@@ -1,3 +1,5 @@
+// stopper block for movable stopper
+
 $fn=36;  // a circle has 36 sides
 moveable_stopper();
 //bevel(r1=10, r2=8);
@@ -14,7 +16,7 @@ module moveable_stopper() {
             union(){
                 cube([38,38,25]);
             }
-            // And these are all the bits we wil remove
+            // And these are all the bits we will remove
             union(){
                 // The cut-away that produces the L-shape overall profile
                 // This cut is a "hull", imagine three cylinders
@@ -31,7 +33,7 @@ module moveable_stopper() {
                         rotate([0,90,0])
                             cylinder(r=8, h=38+2);
                 }
-                // line hole
+                // Safety line hole
                 
                 // original position
                 // translate([38/2,-1,20])
@@ -44,7 +46,7 @@ module moveable_stopper() {
                             translate([0,0,38-1])
                                 bevel(r1=9.5/2+2, r2=9.5/2);
                             }
-                // vertical hole
+                // Cross bore for bungie
                 translate([38/2,12,-1])
                     rotate([0,0,0])
                         
@@ -52,11 +54,11 @@ module moveable_stopper() {
                             cylinder(r=8/2, h=40); 
                             translate([0,0,10])
                                 bevel(r1=8/2+4, r2=8/2);
-                                                                                     translate([0,0,5])
+                            translate([0,0,5])
                                 rotate([180,0,0])
                                     bevel(r1=8/2+4, r2=8/2);
                         }
-                // left bolt hole
+                // left trim line hole
                 translate([6,-1,6])
                     rotate([-90,0,-8])
                         union(){
@@ -67,7 +69,7 @@ module moveable_stopper() {
                                 rotate([180,0,0])
                                     #bevel(r1=5/2+1.5, r2=5/2);
                         }
-                // right bolt hole
+                // right trim line hole
                 translate([38-6,-1,6])
                     rotate([-90,0,8])
 
@@ -111,7 +113,7 @@ module moveable_stopper() {
                 }
             }
         }
-        // curve top
+        // curve top above safety line path
         // This isn't really defined, so this is a guess
         translate([38/2,-1,13])
             hull(){
