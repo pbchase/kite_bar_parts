@@ -9,10 +9,12 @@ $overall_width=38;  // x
 $overall_depth=38;  // y
 $overall_height=25; // z
 
-// the upper half of the block is mostly cut away but a shape called the 
-// "hull".  The curved portiin of this cut-away is has a radius of $hull_radius
-$hull_radius=8;
+// the upper half of the block is mostly cut away by a curved block
+// The curved portion of this cut-away is has a radius of $cut_away_radius
+$cut_away_radius=8;
 
+// Safety line dimensions
+$safety_line_diameter=9.5;
 
 module moveable_stopper() {
     // start with a chunk of material, then chop bits off it
@@ -34,17 +36,17 @@ module moveable_stopper() {
                 // change to "#hull() {" to visualise the shape of this hull
                 hull() { 
                     // aft cylinder
-                    translate([0, $overall_depth - 2*$hull_radius, $overall_height/2+$hull_radius])
+                    translate([0, $overall_depth - 2*$cut_away_radius, $overall_height/2+$cut_away_radius])
                         rotate([0,90,0])
-                            cylinder(r=$hull_radius,, h=$overall_width);
+                            cylinder(r=$cut_away_radius,, h=$overall_width);
                     // upper cylinder
-                    translate([0, $overall_depth - 2*$hull_radius,$overall_height])
+                    translate([0, $overall_depth - 2*$cut_away_radius,$overall_height])
                         rotate([0,90,0])
-                            cylinder(r=$hull_radius, h=$overall_width);
+                            cylinder(r=$cut_away_radius, h=$overall_width);
                     // fore cylinder
-                    translate([0,0,$overall_height/2+$hull_radius])
+                    translate([0,0,$overall_height/2+$cut_away_radius])
                         rotate([0,90,0])
-                            cylinder(r=$hull_radius, h=$overall_width);
+                            cylinder(r=$cut_away_radius, h=$overall_width);
                 }
                 // Safety line hole
                 
@@ -52,13 +54,14 @@ module moveable_stopper() {
                 // translate([38/2,-1,20])
                 
                 // position suggested by Andrew to match sketch
-                translate([38/2,-1,9.5/2+13])
+                translate([$overall_depth/2, -1, $safety_line_diameter/2 + $overall_height/2])
                     rotate([-90,0,0])
                         union(){
-                            cylinder(r=9.5/2, h=40);
-                            translate([0,0,38-1])
-                                bevel(r1=9.5/2+2, r2=9.5/2);
+                            cylinder(r=$safety_line_diameter/2, h=$overall_depth);
+                            translate([0,0,$overall_depth-1])
+                                bevel(r1=$safety_line_diameter/2+2, r2=$safety_line_diameter/2);
                             }
+
                 // Cross bore for bungie
                 translate([38/2,12,-1])
                     rotate([0,0,0])
