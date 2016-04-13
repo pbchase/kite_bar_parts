@@ -4,6 +4,16 @@ $fn=36;  // a circle has 36 sides
 moveable_stopper();
 //bevel(r1=10, r2=8);
 
+// provide dimensions of block from which all other shapes are removed
+$overall_width=38;  // x
+$overall_depth=38;  // y
+$overall_height=25; // z
+
+// the upper half of the block is mostly cut away but a shape called the 
+// "hull".  The curved portiin of this cut-away is has a radius of $hull_radius
+$hull_radius=8;
+
+
 module moveable_stopper() {
     // start with a chunk of material, then chop bits off it
     // the intersection produces the curved top
@@ -14,7 +24,7 @@ module moveable_stopper() {
         difference(){
             // this is all our material, just one block
             union(){
-                cube([38,38,25]);
+                cube([$overall_width,$overall_depth,$overall_height]);
             }
             // And these are all the bits we will remove
             union(){
@@ -23,15 +33,18 @@ module moveable_stopper() {
                 // covered by an elastic membrane
                 // change to "#hull() {" to visualise the shape of this hull
                 hull() { 
-                    translate([-1,38-8-8,13+8])
+                    // aft cylinder
+                    translate([0, $overall_depth - 2*$hull_radius, $overall_height/2+$hull_radius])
                         rotate([0,90,0])
-                            cylinder(r=8, h=38+2);
-                    translate([0,38-8-8,25])
+                            cylinder(r=$hull_radius,, h=$overall_width);
+                    // upper cylinder
+                    translate([0, $overall_depth - 2*$hull_radius,$overall_height])
                         rotate([0,90,0])
-                            cylinder(r=8, h=38+2);
-                    translate([0,0,13+8])
+                            cylinder(r=$hull_radius, h=$overall_width);
+                    // fore cylinder
+                    translate([0,0,$overall_height/2+$hull_radius])
                         rotate([0,90,0])
-                            cylinder(r=8, h=38+2);
+                            cylinder(r=$hull_radius, h=$overall_width);
                 }
                 // Safety line hole
                 
