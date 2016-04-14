@@ -22,6 +22,10 @@ $safety_line_diameter=9.5;
 $cross_bore_diameter=8;
 $cross_bore_cl_to_end=12;
 
+//trim hole line dimensions
+$trim_line_diameter=5;
+$trim_line_angle=8;
+
 module moveable_stopper() {
     // start with a chunk of material, then chop bits off it
     // the intersection produces the curved top
@@ -81,27 +85,17 @@ module moveable_stopper() {
                                     bevel(r1=$cross_bore_diameter, r2=$cross_bore_diameter/2);
                         }
                 // left trim line hole
-                translate([6,-1,6])
-                    rotate([-90,0,-8])
+                translate([$thickness_of_main_body/2,-$trim_line_diameter/2,$thickness_of_main_body/2])
+                    rotate([-90,0,-$trim_line_angle])
                         union(){
-                            cylinder(r=5/2, h=40);
-                            translate([0,0,38.5])
-                                bevel(r1=5/2+1.5, r2=5/2);
-                            translate([0,0,2])
-                                rotate([180,0,0])
-                                    #bevel(r1=5/2+1.5, r2=5/2);
+                            cylinder(r=$trim_line_diameter/2, h=$overall_depth + $trim_line_diameter);
                         }
                 // right trim line hole
-                translate([38-6,-1,6])
-                    rotate([-90,0,8])
+                translate([$overall_width-$thickness_of_main_body/2, -$trim_line_diameter/2, $thickness_of_main_body/2])
+                    rotate([-90,0,$trim_line_angle])
 
                         union(){
-                            cylinder(r=5/2, h=40);
-                            translate([0,0,38.5])
-                                bevel(r1=5/2+1.5, r2=5/2);
-                            translate([0,0,2])
-                                rotate([180,0,0])
-                                    #bevel(r1=5/2+1.5, r2=5/2);
+                            cylinder(r=$trim_line_diameter/2, h=$overall_depth + $trim_line_diameter);
                         }
                 // 8 degrees off left
                 // The slope of the sides is defined two ways:
@@ -113,7 +107,7 @@ module moveable_stopper() {
                         rotate([0,0,0])
                             cylinder(r=1, h=25+2);
                     translate([-1,0,-1])
-                        rotate([0,0,-8])
+                        rotate([0,0,-$trim_line_angle])
                             translate([0,38,0])
                                 cylinder(r=1, h=25+2);
                     translate([-1,38,-1])
@@ -126,7 +120,7 @@ module moveable_stopper() {
                         rotate([0,0,0])
                             cylinder(r=1, h=25+2);
                     translate([38+1,0,-1])
-                        rotate([0,0,8])
+                        rotate([0,0,$trim_line_angle])
                             translate([0,38,0])
                                 cylinder(r=1, h=25+2);
                     translate([38+1,38,-1])
