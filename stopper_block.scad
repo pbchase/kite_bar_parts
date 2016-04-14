@@ -22,9 +22,13 @@ $safety_line_diameter=9.5;
 $cross_bore_diameter=8;
 $cross_bore_cl_to_end=12;
 
-//trim hole line dimensions
+// trim hole line dimensions
 $trim_line_diameter=5;
 $trim_line_angle=8;
+
+// left and right cut away dimensions
+$oversize=1;
+$side_cutaway_height=$overall_height + 2*$oversize;
 
 module moveable_stopper() {
     // start with a chunk of material, then chop bits off it
@@ -102,30 +106,25 @@ module moveable_stopper() {
                 // - An 8 degree slope
                 // - difference between 38mm at the front and 25mm at the rear
                 // For no good reason, we choose to use the 8 degree definition.
+                $radius=10;
                 hull(){
-                    translate([-1,0,-1])
+                    translate([-$radius,0,-$oversize])
                         rotate([0,0,0])
-                            cylinder(r=1, h=25+2);
-                    translate([-1,0,-1])
+                            cylinder(r=$radius, h=$side_cutaway_height);
+                    translate([-$radius,0,-$oversize])
                         rotate([0,0,-$trim_line_angle])
-                            translate([0,38,0])
-                                cylinder(r=1, h=25+2);
-                    translate([-1,38,-1])
-                        rotate([0,0,0])
-                            cylinder(r=1, h=25+2);
+                            translate([0,$overall_depth+$oversize*3,0])
+                                cylinder(r=$radius, h=$side_cutaway_height);
                 }
                 // 8 degrees off right
                 hull(){
-                    translate([38+1,0,-1])
+                    translate([$overall_width+$radius,0,-$oversize])
                         rotate([0,0,0])
-                            cylinder(r=1, h=25+2);
-                    translate([38+1,0,-1])
+                            cylinder(r=$radius, h=$side_cutaway_height);
+                    translate([$overall_width+$radius,0,-$oversize])
                         rotate([0,0,$trim_line_angle])
-                            translate([0,38,0])
-                                cylinder(r=1, h=25+2);
-                    translate([38+1,38,-1])
-                        rotate([0,0,0])
-                            cylinder(r=1, h=25+2);
+                            translate([0,$overall_depth+$oversize*3,0])
+                                cylinder(r=$radius, h=$side_cutaway_height);
                 }
             }
         }
