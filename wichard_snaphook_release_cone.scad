@@ -9,47 +9,47 @@
 
 // The dimensions of the base cylinder
 base_h = 7;
-base_r = 12.7;
+base_r = 12.7/2;
 
 // The dimensions of the second cylinder and its fillet
 mid_h = 9;
-// For model 2674, use mid_r = 7, top_h = 25
-// For model 2776, use mid_r = 8, top_h = 31
-mid_r = 7;
+// For model 2674, use mid_r = 7/2
+// For model 2776, use mid_r = 8/2
+mid_r = 8/2;
 mid_fillet_r = 1.5;
 
 // The dimensions of the cone
 top_h = 25;
 top_r1 = mid_r;
-top_r2 = 3; 
+top_r2 = 4/2;
 
 // The dimensions of the bore tha passes through the entire stack of cylinders and cones
-bore_r = 1/16 * 25.4;
+bore_r = 1/16 * 25.4/2;
 bore_h = base_h + mid_h + top_h;
 
 // set the facet number high (40-60) for final generation
-$fn = 60;
+$fn = 30;
 
 difference() {
     union() {  // stack a series of cylinders from z=0 going up.
         // start with a squat cylinder, A
-        cylinder(h = base_h, r1 = base_r, r2 = base_r, center = true/false);
-    
+        cylinder(h = base_h, r1 = base_r, r2 = base_r);
+
         // add a smaller diameter cylinder, B
         translate([0,0,base_h])
-            cylinder(h = mid_h, r1 = mid_r, r2 = mid_r, center = true/false);
+            cylinder(h = mid_h, r1 = mid_r, r2 = mid_r);
 
         // Add a crude fillet, C, between A and B
         translate([0,0,base_h])
             fillet(mid_r, mid_fillet_r);
-        
+
         // Add a cone, D
         translate([0,0,base_h+mid_h])
             cylinder(h = top_h, r1 = top_r1, r2 = top_r2, center = true/false);
 
     }
     // subtract the center bore
-    cylinder(h = bore_h, r1 = bore_r, r2 = bore_r, center = true/false);
+    cylinder(h = bore_h, r1 = bore_r, r2 = bore_r);
 }
 
 module fillet(r1, r2){
