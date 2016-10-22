@@ -41,7 +41,7 @@ difference() {
         // Add a cone, D
         translate([0,0,handle_r - bottom_truncation])
             difference() {
-                parabolic_cone(cone_r1, cone_h, cone_r2);
+                elliptical_cone(cone_r1, cone_h, cone_r2);
                 // truncate the bottom of the cone
                 translate([0,0,-1])
                 cylinder(h=0.2*cone_h, r=2*cone_r1 + 2*cone_r2, center=false);
@@ -65,7 +65,7 @@ difference() {
     }
 }
 
-module parabolic_cone(a_axis, b_axis, r_cone_tip){
+module elliptical_cone(a_axis, b_axis, r_cone_tip){
     // a_axis is the diameter f the cone base,
     // b_axis is the cone height
     // r_cone_tip is the radius tip (top) of the cone)
