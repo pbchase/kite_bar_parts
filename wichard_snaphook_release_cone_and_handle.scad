@@ -2,7 +2,7 @@
 // See http://marine.wichard.com/rubrique-Quick_release_snap_shackles-0202040300000000-ME.html
 // Make two pieces per snap shackle.
 // Author: Philip B Chase, <philipbchase@gmail.com>
-/* This design is meant to be assembled on a 1/16" stainless steel wire rope or line that passes through the release gate of the snap shackle. The narrow tip of each piece faces the shackle. The handles are affixed to the wire with swaged fittings (or knots recessed inside the handles.  When pulled, the ball pulls the opposite cone into the release gate to open the snap shackle.
+/* This design is meant to be assembled on a short, folded, segment of 300# Spectra line that passes through the release gate of the snap shackle. The narrow tip of each piece faces the shackle. The spectra is folded in half, tied at the loose end and pulled through the entire assemble with a wire fid.  the folded end of the line is locked in place by a very small segment of line knotted and larksheaded on the end. The knots are recessed inside the handles.  When pulled, the ball pulls the opposite cone into the release gate to open the snap shackle. Once released, the cone often stays in the release gate holding the gate open. This allows the gate to be reclosed with zero-force. before pulling the cone out of the gate.
 */
 /* License: To the extent possible under law, Philip B Chase has waived all copyright and related or neighboring rights to 3D model for a handle with cone to release a Wichard quick release snap shackle. This work is published from: United States.  See: http://creativecommons.org/publicdomain/zero/1.0/
 */
@@ -14,11 +14,9 @@ cutout_sphere_radius = 11;
 cutout_sphere_center_height = 6;
 
 // The dimensions of the cone
-// For model 2674, use top_r1 = 7, top_h = 25
-// For model 2776, use top_r1 = 8, top_h = 31
 top_h = 30;
-top_r1 = 10;
-top_r2 = 2;
+top_r1 = 11;
+top_r2 = 2.25;
 
 // Dimensions of the cone extended to the center of the cylinder
 cone_h = top_h + handle_r;
@@ -26,7 +24,7 @@ cone_r2 = top_r2;
 cone_r1 = top_r1;
 
 // The dimensions of the bore that passes through the handle and cone
-bore_r = 1/16 * 25.4/2;
+bore_r = 0.076 * 25.4/2;
 bore_h = 2 * handle_r + cone_h;
 
 // set the facet number high (40-60) for final generation
