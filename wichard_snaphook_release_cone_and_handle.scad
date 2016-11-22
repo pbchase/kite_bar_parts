@@ -2,7 +2,7 @@
 // See http://marine.wichard.com/rubrique-Quick_release_snap_shackles-0202040300000000-ME.html
 // Make two pieces per snap shackle.
 // Author: Philip B Chase, <philipbchase@gmail.com>
-/* This design is meant to be assembled on a short, folded, segment of 300# Spectra line that passes through the release gate of the snap shackle. The narrow tip of each piece faces the shackle. The spectra is folded in half, tied at the loose end and pulled through the entire assemble with a wire fid.  the folded end of the line is locked in place by a very small segment of line knotted and larksheaded on the end. The knots are recessed inside the handles.  When pulled, the ball pulls the opposite cone into the release gate to open the snap shackle. Once released, the cone often stays in the release gate holding the gate open. This allows the gate to be reclosed with zero-force. before pulling the cone out of the gate.
+/* This design is meant to be assembled on a short, folded, segment of 300# Spectra line that passes through the release gate of the snap shackle. The narrow tip of each piece faces the shackle. The spectra is folded in half, tied at the loose end and pulled through the entire assemble with a wire fid.  the folded end of the line is locked in place by a very small segment of line knotted and larksheaded on the end. The knots are recessed inside the handles.  When pulled, the ball pulls the opposite cone into the release gate to open the snap shackle. Once released, the cone often stays in the release gate holding the gate open. This allows the gate to be reclosed with zero-force before pulling the cone out of the gate.
 */
 /* License: To the extent possible under law, Philip B Chase has waived all copyright and related or neighboring rights to 3D model for a handle with cone to release a Wichard quick release snap shackle. This work is published from: United States.  See: http://creativecommons.org/publicdomain/zero/1.0/
 */
@@ -13,18 +13,16 @@ bottom_truncation = 0.33 * handle_r;
 cutout_sphere_radius = 11;
 cutout_sphere_center_height = 6;
 
-// The dimensions of the cone
-top_h = 30;
-top_r1 = 11;
-top_r2 = 2.25;
-
-// Dimensions of the cone extended to the center of the cylinder
-cone_h = top_h + handle_r;
-cone_r2 = top_r2;
-cone_r1 = top_r1;
+// Dimensions of the cone extended into the cylinder
+cone_r2 = 4.5/2;  //tip diameter
+cone_r3 = 7.0/2;  //diameter in gate at release
+h3_minus_h2 = 8.5;  //distance from one spring gate centerline to opposite spring gate interior surface
+cone_slope = (cone_r3-cone_r2)/h3_minus_h2;
+cone_h = 30;
+cone_r1 = cone_r2 + cone_slope*cone_h;
 
 // The dimensions of the bore that passes through the handle and cone
-bore_r = 0.076 * 25.4/2;
+bore_r = 2.5/2;
 bore_h = 2 * handle_r + cone_h;
 
 // set the facet number high (40-60) for final generation
@@ -37,13 +35,8 @@ difference() {
             sphere(r=handle_r);
 
         // Add a cone, D
-        translate([0,0,handle_r - bottom_truncation])
-            difference() {
-                elliptical_cone(cone_r1, cone_h, cone_r2);
-                // truncate the bottom of the cone
-                translate([0,0,-1])
-                cylinder(h=0.2*cone_h, r=2*cone_r1 + 2*cone_r2, center=false);
-            }
+        translate([0,0,2*handle_r - 2*bottom_truncation])
+            cylinder(h = cone_h, r1 = cone_r1, r2 = cone_r2);
 
 
     }
@@ -63,24 +56,3 @@ difference() {
     }
 }
 
-module elliptical_cone(a_axis, b_axis, r_cone_tip){
-    // a_axis is the diameter f the cone base,
-    // b_axis is the cone height
-    // r_cone_tip is the radius tip (top) of the cone)
-    //$fn=30;
-    translate([0,0,b_axis])
-        rotate (a = [0,180,0])
-            difference() {
-                cylinder(h=b_axis, r=a_axis+r_cone_tip);
-
-                rotate_extrude(convexity = 10)
-                    translate([a_axis+r_cone_tip,0,0])
-                        ellipse(a_axis, b_axis);
-            }
-}
-
-
-module ellipse(a_axis, b_axis) {
-    scale([a_axis/a_axis,b_axis/a_axis])
-        circle(r=a_axis);
-}
