@@ -31,31 +31,34 @@ bore_h = 2 * handle_r + cone_h;
 // set the facet number high (40-60) for final generation
 $fn = 50;
 
-difference() {
-    union() {  // stack a series of cylinders from z=0 going up.
-        // start with a handle, A
-        translate([0,0,handle_r - bottom_truncation])
-            sphere(r=handle_r);
+difference() { // this temporary layer is used to make a cross-section on the vertical axis of symmetry during design work.
+    difference() {
+        union() {  // A sphere and cone that make the basic exterior shape of the piece
+            // start with a spherical handle, A
+            translate([0,0,handle_r - bottom_truncation])
+                sphere(r=handle_r);
 
-        // Add a cone, D
-        translate([0,0,2*handle_r - 2*bottom_truncation])
-            cylinder(h = cone_h, r1 = cone_r1, r2 = cone_r2);
+            // Add a cone, D
+            translate([0,0,2*handle_r - 2*bottom_truncation])
+                cylinder(h = cone_h, r1 = cone_r1, r2 = cone_r2);
 
 
+        }
+        union() {   // subtract the center bore, everything below z=0, and interior of handle
+            // define the center bore
+            cylinder(h = bore_h, r1 = bore_r, r2 = bore_r);
+
+            // define cube as big as the handle with a top at z=0
+            translate([0,0,-handle_r])
+                cube (size=2*handle_r, center=true);
+
+            // define the sphere cut out from the back of the handle
+            translate([0,0,cutout_sphere_center_height])
+                sphere(r=cutout_sphere_radius);
+
+        }
     }
-    // subtract the center bore and bottom of handle and everything below z=0
-    union() {
-        // define the center bore
-        cylinder(h = bore_h, r1 = bore_r, r2 = bore_r);
-
-        // define cube as big as the handle with a top at z=0
-        translate([0,0,-handle_r])
-            cube (size=2*handle_r, center=true);
-
-        // define the sphere cut out from the back of the handle
-        translate([0,0,cutout_sphere_center_height])
-            sphere(r=cutout_sphere_radius);
-
-    }
+    translate([0,bore_h/2,bore_h/2])      //a cube with one face that bisects the piece
+        //cube(size=bore_h,center=true)   // uncomment this line to reveal a cross-section of the piece
+        ;
 }
-
