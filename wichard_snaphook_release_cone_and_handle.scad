@@ -13,8 +13,8 @@ Use: When pulled, the ball pulls the opposite cone into the release gate to open
 // The dimensions of the handle
 handle_r = 14;
 bottom_truncation = 0.33 * handle_r;
-cutout_sphere_radius = 11;
-cutout_sphere_center_height = 6;
+cutout_sphere_radius = 12;
+cutout_sphere_center_height = 7.5;
 
 // Dimensions of the cone extended into the cylinder
 cone_r2 = 4.5/2;  //tip diameter
