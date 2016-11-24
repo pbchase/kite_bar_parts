@@ -1,4 +1,4 @@
-// 3D model for a handle with cone to release a Wichard quick release snap shackle
+// 3D model for a handle to release a Wichard quick release snap shackle
 // See http://marine.wichard.com/rubrique-Quick_release_snap_shackles-0202040300000000-ME.html
 // Make two pieces per snap shackle.
 // Author: Philip B Chase, <philipbchase@gmail.com>
@@ -7,7 +7,7 @@ Assembly: This design is meant to be assembled on a short, folded, segment of 30
 
 Use: When pulled, the ball pulls the opposite cone into the release gate to open the snap shackle. Once released, the cone often stays in the release gate holding the gate open. This allows the gate to be reclosed with zero-force before pulling the cone out of the gate.
 */
-/* License: To the extent possible under law, Philip B Chase has waived all copyright and related or neighboring rights to 3D model for a handle with cone to release a Wichard quick release snap shackle. This work is published from: United States.  See: http://creativecommons.org/publicdomain/zero/1.0/
+/* License: To the extent possible under law, Philip B Chase has waived all copyright and related or neighboring rights to 3D model for a handle to release a Wichard quick release snap shackle. This work is published from: United States.  See: http://creativecommons.org/publicdomain/zero/1.0/
 */
 
 // The dimensions of the handle
