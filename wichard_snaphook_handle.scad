@@ -17,7 +17,7 @@ cutout_sphere_radius = 12;
 cutout_sphere_center_height = 7.5;
 
 // Dimensions of the cone extended into the cylinder
-cone_r2 = 4.5/2;  //tip diameter
+cone_r2 = 4.0/2;  //tip diameter
 cone_r3 = 7.0/2;  //diameter in gate at release
 h3_minus_h2 = 8.5;  //distance from one spring gate centerline to opposite spring gate interior surface
 cone_slope = (cone_r3-cone_r2)/h3_minus_h2;
@@ -25,7 +25,7 @@ cone_h = 30;
 cone_r1 = cone_r2 + cone_slope*cone_h;
 
 // The dimensions of the bore that passes through the handle and cone
-bore_r = 2.5/2;
+bore_r = 2/2;
 bore_h = 2 * handle_r + cone_h;
 
 // set the facet number high (40-60) for final generation
