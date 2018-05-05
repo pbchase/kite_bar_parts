@@ -18,7 +18,7 @@ cutout_sphere_center_height = 7.5;
 
 // Dimensions of the cone extended into the cylinder
 cone_r2 = 4.0/2;  //tip diameter
-cone_r3 = 6.0/2;  //diameter in gate at release
+cone_r3 = 6.5/2;  //diameter in gate at release
 h3_minus_h2 = 8.5;  //distance from one spring gate centerline to opposite spring gate interior surface
 cone_slope = (cone_r3-cone_r2)/h3_minus_h2;
 cone_h = 30;
