@@ -38,14 +38,14 @@ exterior_cone_tip_r = 4.0/2;  // a cone tip diameter of 4 mm allowed reliable en
 exterior_cone_slope = 0.147;  // a slope of 0.147 did well in tests
 // The cone height defines the overall length of the pull.  The height must
 // allow two fingers to grip the base of the cone.
-exterior_cone_h = 48.76;
+exterior_cone_h = 49;
 exterior_cone_base_r = exterior_cone_slope * exterior_cone_h + exterior_cone_tip_r;
 
 // The dimensions of the bore that passes through the handle and cone.
 // The bore radius needs to be just large enough to allow a sturdy spectra
 // line to pass through when doubled, yet small enough to assure the wall
 // thickness at the tip is enough to not degrade in normal use.
-bore_r = 2.75/2;
+bore_r = 2.38/2;
 bore_h = 2 * bore_r + exterior_cone_h;
 
 // Fillet parameters
