@@ -1,35 +1,63 @@
-// 3D model for a handle to release a Wichard quick release snap shackle in the "golf tee" style
-// See http://marine.wichard.com/rubrique-Quick_release_snap_shackles-0202040300000000-ME.html
-// Make two pieces per snap shackle.
-// Recommend this be printed in PLA with 3 shells, 80 % infill and no supports.
-// Author: Philip B Chase, <philipbchase@gmail.com>
 /*
-Assembly: This design is meant to be assembled on a short, folded, segment of 300# Spectra line that passes through the release gate of the snap shackle. The narrow tip of each piece faces the shackle. The spectra is folded in half, tied at the loose end and pulled through the entire assembly with a wire fid.  The folded end of the line is locked in place by a very small segment of line knotted and larksheaded on the end. The knots are recessed inside the handles.
+3D model for a handle to release a Wichard quick release snap shackle in the "golf tee" style
+See http://marine.wichard.com/rubrique-Quick_release_snap_shackles-0202040300000000-ME.html
+Make two pieces per snap shackle.
+Recommend this be printed in PLA with 3 shells, 80 % infill and no supports.
+Author: Philip B Chase, <philipbchase@gmail.com>
 
-Use: When pulled, this object pulls the opposite cone into the release gate to open the snap hook. Once released, the cone often stays in the release gate holding the gate open. This allows the gate to be reclosed with zero-force before pulling the cone out of the gate.
-*/
-/* License: To the extent possible under law, Philip B Chase has waived all copyright and related or neighboring rights to 3D model for a handle to release a Wichard quick release snap shackle. This work is published from: United States.  See: http://creativecommons.org/publicdomain/zero/1.0/
+Assembly: This design is meant to be assembled on a short, folded, segment of
+    300# Spectra line that passes through the release gate of the snap shackle.
+    The narrow tip of each piece faces the shackle. The spectra is folded in half,
+    tied at the loose end and pulled through the entire assembly with a wire fid.
+    The folded end of the line is locked in place by a very small segment of line
+    knotted and larksheaded on the end. The knots are recessed inside the handles.
+
+Use: When pulled, this object pulls the opposite cone into the release gate to
+    open the snap hook. Once released, the cone often stays in the release gate
+    holding the gate open. This allows the gate to be reclosed with zero-force
+    before pulling the cone out of the gate.
+
+License: To the extent possible under law, Philip B Chase has waived all
+    copyright and related or neighboring rights to 3D model for a handle to
+    release a Wichard quick release snap shackle. This work is published from:
+    United States.  See: http://creativecommons.org/publicdomain/zero/1.0/
 */
 
-// The dimensions of the pull
-// Dimensions of the exterior cone that enters the snaphook gate
-exterior_cone_tip_r = 4.0/2;  //tip radius
-exterior_cone_slope = 0.147;
+/*
+The dimensions of the pull
+
+Dimensions of the exterior cone that enters the snaphook gate. The tip radius
+and taper are the most critical dimensions.  The tip diameter must be just
+small enough to reliably enter the gate, but large enough to be durable as it
+will receive the most wear. The taper of the cone must be steep enough to open
+the gate before the tip hits to opposite side of the gate as the tip can jam
+on the opposite gate. The the taper must be shallow enough that the cone
+requires minimal force the open the gate.
+*/
+exterior_cone_tip_r = 4.0/2;  // a cone tip diameter of 4 mm allowed reliable entry into the gate in testing
+exterior_cone_slope = 0.147;  // a slope of 0.147 did well in tests
+// The cone height defines the overall length of the pull.  The height must
+// allow two fingers to grip the base of the cone.
 exterior_cone_h = 48.76;
 exterior_cone_base_r = exterior_cone_slope * exterior_cone_h + exterior_cone_tip_r;
 
-// The dimensions of the bore that passes through the handle and cone
+// The dimensions of the bore that passes through the handle and cone.
+// The bore radius needs to be just large enough to allow a sturdy spectra
+// line to pass through when doubled, yet small enough to assure the wall
+// thickness at the tip is enough to not degrade in normal use.
 bore_r = 2.75/2;
 bore_h = 2 * bore_r + exterior_cone_h;
 
 // Fillet parameters
-// The fillet provides a smooth transition between the cone and the base using and elliptical shape
+// The fillet provides a smooth transition between the cone and the
+// base using and elliptical shape
 fillet_major_radius=7;
 fillet_a_axis=8;
 fillet_b_axis=9;
 
 // Base parameters
-// The base is a flared end at the wide end of the cone to allow a comfortable grip when pulling
+// The base is a flared end at the wide end of the cone to allow a
+// comfortable grip when pulling
 base_a_axis=9;
 base_b_axis=3;
 base_major_radius = 0.05;  // a non-zero radius is required for the render
@@ -44,7 +72,7 @@ base_underslope_lower_radius = base_underslope_upper_radius - base_underslope_he
 hollow_height = 12;
 hollow_upper_radius = 3;
 hollow_slope = 0.55;
-hollow_lower_radius = hollow_upper_radius + hollow_height*hollow_slope; 
+hollow_lower_radius = hollow_upper_radius + hollow_height*hollow_slope;
 hollow_z_trans = -0.1;
 
 // Cap of the base hollow
@@ -101,8 +129,8 @@ module elliptical_cone(a_axis, b_axis, r_cone_tip){
 
 module elliptical_torus(a_axis, b_axis, major_radius){
     // a_axis is the width of the cross section on the X-Y plane
-    // b_axis is the height of the cross section on the Z plane 
-    // major_radius is the radius torus 
+    // b_axis is the height of the cross section on the Z plane
+    // major_radius is the radius torus
     //$fn=30;
     rotate_extrude(convexity = 10)
         translate([a_axis+major_radius,0,0])
