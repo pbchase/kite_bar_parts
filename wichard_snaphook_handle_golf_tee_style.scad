@@ -1,7 +1,7 @@
 // 3D model for a handle to release a Wichard quick release snap shackle in the "golf tee" style
 // See http://marine.wichard.com/rubrique-Quick_release_snap_shackles-0202040300000000-ME.html
 // Make two pieces per snap shackle.
-// Recommend this be printed in PLA with 3 shells and 80 % infill, and supports. 
+// Recommend this be printed in PLA with 3 shells, 80 % infill and no supports.
 // Author: Philip B Chase, <philipbchase@gmail.com>
 /*
 Assembly: This design is meant to be assembled on a short, folded, segment of 300# Spectra line that passes through the release gate of the snap shackle. The narrow tip of each piece faces the shackle. The spectra is folded in half, tied at the loose end and pulled through the entire assembly with a wire fid.  The folded end of the line is locked in place by a very small segment of line knotted and larksheaded on the end. The knots are recessed inside the handles.
@@ -45,6 +45,16 @@ hollow_height = 12;
 hollow_upper_radius = 3;
 hollow_slope = 0.55;
 hollow_lower_radius = hollow_upper_radius + hollow_height*hollow_slope; 
+hollow_z_trans = -0.1;
+
+// Cap of the base hollow
+// To adhere to the maximum overhang angle constraints of the Makerbot printers,
+// the top of the hollow requires a cap with a 22 degree bevelled cap.
+hollow_cap_upper_radius = bore_r;
+hollow_cap_slope = underslope;
+hollow_cap_lower_radius = hollow_upper_radius;
+hollow_cap_height = underslope * (hollow_cap_lower_radius - hollow_cap_upper_radius);
+hollow_cap_z_trans = hollow_z_trans + hollow_height;
 
 // set the facet number high (40-60) for final generation
 $fn = 50;
@@ -63,8 +73,10 @@ difference() {
         union() {
             translate([0,0,-bore_r])
                 cylinder(h = bore_h, r1 = bore_r, r2 = bore_r);
-            translate([0,0,-0.1])
+            translate([0,0,hollow_z_trans])
                 cylinder(h = hollow_height, r1 = hollow_lower_radius, r2 = hollow_upper_radius);
+            translate([0,0,hollow_cap_z_trans])
+                cylinder(h = hollow_cap_height, r1 = hollow_cap_lower_radius, r2 = hollow_cap_upper_radius);
         }
     }
 //    translate([0,exterior_cone_h/2,exterior_cone_h/2])  //a cube with one face that bisects the piece
