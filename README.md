@@ -39,7 +39,11 @@ Most of these designs do not need supports. In some cases overhangs have been sp
 
 ![](images/stopper_ball.png)
 
-[stopper\_block](stopper_block.scad) - The block in a moveable stopper. This component has never been tested. Its edges are far harsher than what is possible when machining such a block from Delrin.
+[stopper\_block\_v2](stopper_block_v2.scad) - This block is used in tandem with the stopper ball to form a moveable stopper. This 3D model has never been tested. That said, it is based on a hand-made design, cut from Delrin, that has been tested extensively. This model is closer to the hand-made design than the original [stopper\_block](stopper_block.scad) model.
+
+![](images/stopper_block_v2.png)
+
+[stopper\_block](stopper_block.scad) - This block is used in tandem with the stopper ball to form a moveable stopper.  This 3D model has never been tested. That said, it is based on a hand-made design, cut from Delrin, that has been tested extensively.  The edges of this model are far harsher than what is possible when machining such a block from Delrin. The harsh edges might make it unsuitable for regular use.
 
 ![](images/stopper_block.png)
 
