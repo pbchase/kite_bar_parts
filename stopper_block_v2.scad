@@ -1,3 +1,25 @@
+/*
+3D model for a stopper block for a kite control bar.  This device works in
+tandem with a stopper ball to provide variable stop position for a kite
+control bar that uses a twin-trimline.
+
+Print one piece per control bar.
+
+Recommend this be printed in PLA with 3 shells, 80 % infill and no supports.
+Author: Philip B Chase, <philipbchase@gmail.com>
+
+Assembly with ball: This component is designed to be assemble with a stopper ball using a 1/8" bungie. The bungie should be 155mm long.  It should be routed through the small bore holes of the stopper ball and through the cross bore of the stopper block. The ends of the bungie should be blunt cut and super glued together.  The resulting bungie is a continuous loop with slightly lumpy, stiff section where the ends are glued together.
+
+Assembly into bar: The trim line end should be routed into a trim line hole from the narrow end of the block, through the center bore of the ball, through the center bore of the bar, through, a retaining ball, back through the center bore of the bar, back through the center bore of the ball, into the remain trim line hole of the block, and out the narrow end of the block.
+
+Use: The ball is pulled down the trim line to lower the bar stop.  The blokc is pulled up the trim line to raise the bar stop.
+
+License: To the extent possible under law, Philip B Chase has waived all
+    copyright and related or neighboring rights to 3D model for a stopper
+    block for a kite control bar. This work is published from:
+    United States.  See: http://creativecommons.org/publicdomain/zero/1.0/
+*/
+
 // stopper block for movable stopper
 
 $fn=36;  // a circle has 36 sides
@@ -71,7 +93,7 @@ module moveable_stopper() {
                 [$width_near_kite/$overall_width, 1, 1],
                 [0.7, 1, 1]
             ];
-            translate([0, 0, $thickness_of_main_body - 2*$r_base]) 
+            translate([0, 0, $thickness_of_main_body - 2*$r_base])
             trapCube([$overall_width, $overall_depth, $overall_height - $thickness_of_main_body +2*$r_base], $trapMatrixForUpper, radius=$r_base);
             // cut away the front portion of the upper
             cube([$overall_width, $overall_depth-$cut_away_radius-$flag_line_path_thickness, $overall_height]);
@@ -189,7 +211,7 @@ module _trapX( x, y, z, trapMatrix, r, center )
 
 module __trapX(	x, y, z, trapMatrix, r )
 {
-    // trapezoidal matrix is defined as 
+    // trapezoidal matrix is defined as
     //[
     //    [scale_x, scale_in_y_along_increasing_x, scale_in_z_along_increasing_x],
     //    [scale_in_x_along_increasing_y, scale_y, scale_in_z_along_increasing_y],
