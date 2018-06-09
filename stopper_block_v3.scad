@@ -26,7 +26,7 @@ $fn=36;  // a circle has 36 sides
 //bevel(r1=10, r2=8);
 
 // provide dimensions of block from which all other shapes are removed
-$overall_width=38;  // x
+$overall_width=34;  // x
 $overall_depth=38;  // y
 $overall_height=25; // z
 
@@ -34,7 +34,7 @@ $overall_height=25; // z
 $r_base = 2;
 
 // block is narrowed at the kite end
-$width_near_kite = 25;
+$width_near_kite = $overall_width * 25/38 ;
 
 // The upper half of the block is mostly cut away by a curved block
 // The curved portion of this cut-away is has a radius of $cut_away_radius
@@ -59,7 +59,7 @@ $trim_line_angle=8;
 // Define magnet hole
 $magnet_radius=3/8*25.4/2;
 $magnet_height=3/8*25.4 - 0.5;
-$distance_back_from_front = $overall_depth/2;
+$distance_back_from_front = $overall_depth * 0.45;
 
 $oversize=1;
 
@@ -122,14 +122,17 @@ module cut_away_upper() {
 }
 
 module trimline_holes(){
+    x_displacement = $thickness_of_main_body*0.5;
+    // Reduce the facet count so that the upper surfaces are 22.5 degrees above horizontal.
+    $fn=8;
     // Drill left trim line hole
-    translate([$thickness_of_main_body/2,-$trim_line_diameter/2,$thickness_of_main_body/2])
+    translate([x_displacement,-$trim_line_diameter/2,$thickness_of_main_body/2])
         rotate([-90,0,-$trim_line_angle])
             union(){
                 cylinder(r=$trim_line_diameter/2, h=$overall_depth + $trim_line_diameter);
             }
     // Drill right trim line hole
-    translate([$overall_width-$thickness_of_main_body/2, -$trim_line_diameter/2, $thickness_of_main_body/2])
+    translate([$overall_width - x_displacement, -$trim_line_diameter/2, $thickness_of_main_body/2])
         rotate([-90,0,$trim_line_angle])
 
             union(){
@@ -139,7 +142,7 @@ module trimline_holes(){
 
 
  module bungie_ball_connector_path() {
-    translate([$overall_width/2,-1,$thickness_of_main_body/2])
+    translate([$overall_width/2,-1.5,$thickness_of_main_body/2])
         rotate([0,90,0])
             elliptical_torus($cross_bore_diameter/2, $cross_bore_diameter/2, $thickness_of_main_body/2 + 1);
 }
@@ -153,12 +156,14 @@ module magnet_hole() {
 
 
 module flag_line_path() {
-    translate([$overall_depth/2, -1, $safety_line_diameter/2 + $thickness_of_main_body])
+    // Reduce the facet count so that the upper surfaces are 22.5 degrees above horizontal.
+    $fn=8;
+    translate([$overall_width/2, -0.5, $safety_line_diameter/2 + $thickness_of_main_body])
         rotate([-90,0,0])
             union(){
                 cylinder(r=$safety_line_diameter/2, h=$overall_depth);
                 translate([0,0,$overall_depth-1])
-                    bevel(r1=$safety_line_diameter/2+2, r2=$safety_line_diameter/2);
+                    bevel(r1=$safety_line_diameter/2+1.5, r2=$safety_line_diameter/2);
                 }
 }
 
