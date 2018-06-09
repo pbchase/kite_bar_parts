@@ -39,6 +39,10 @@ Most of these designs do not need supports. In some cases overhangs have been sp
 
 ![](images/stopper_ball.png)
 
+[stopper\_block\_v3](stopper_block_v3.scad) - This block is used in tandem with the stopper ball to form a moveable stopper. This 3D model has never been tested in the field. It is 4mm narrow than stopper\_block\_v2 and uses octagonal horizontal bores to reduce overhang issues when printing.
+
+![](images/stopper_block_v3.png)
+
 [stopper\_block\_v2](stopper_block_v2.scad) - This block is used in tandem with the stopper ball to form a moveable stopper. This 3D model has never been tested. That said, it is based on a hand-made design, cut from Delrin, that has been tested extensively. This model is closer to the hand-made design than the original [stopper\_block](stopper_block.scad) model.
 
 ![](images/stopper_block_v2.png)
