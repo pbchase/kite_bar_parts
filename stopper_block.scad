@@ -1,4 +1,5 @@
 // stopper block for movable stopper
+// Authors: Andrew Beattie, <andrew@tug.com>, Philip Chase <philipbchase@gmail.com>
 
 $fn=36;  // a circle has 36 sides
 moveable_stopper();
