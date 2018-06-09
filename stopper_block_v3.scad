@@ -94,7 +94,7 @@ module moveable_stopper() {
                 [0.7, 1, 1]
             ];
             translate([0, 0, $thickness_of_main_body - 2*$r_base])
-            trapCube([$overall_width, $overall_depth, $overall_height - $thickness_of_main_body +2*$r_base], $trapMatrixForUpper, radius=$r_base);
+            trapCube([$overall_width, $overall_depth, $overall_height - $thickness_of_main_body +2*$r_base], $trapMatrixForUpper, radius=$r_base, round_z_negative=true);
             // cut away the front portion of the upper
             cube([$overall_width, $overall_depth-$cut_away_radius-$flag_line_path_thickness, $overall_height]);
             // Cut away for upper section
@@ -200,7 +200,7 @@ module trapCube( size, trapMatrix=[1,1,1], radius=1, center=false, round_z_negat
 		_trapX( size[0], size[1], size[2], trapMatrix, radius, center, round_z_negative );
 }
 
-module _trapX( x, y, z, trapMatrix, r, center, round_z_negative=true )
+module _trapX( x, y, z, trapMatrix, r, center, round_z_negative)
 {
     if( center )
         translate( [-x/2, -y/2, -z/2] )
@@ -209,7 +209,7 @@ module _trapX( x, y, z, trapMatrix, r, center, round_z_negative=true )
         __trapX( x, y, z, trapMatrix, r, round_z_negative);
 }
 
-module __trapX(	x, y, z, trapMatrix, r, round_z_negative=true )
+module __trapX(	x, y, z, trapMatrix, r, round_z_negative)
 {
     // trapezoidal matrix is defined as
     //[
@@ -255,4 +255,4 @@ module __trapX(	x, y, z, trapMatrix, r, round_z_negative=true )
 }
 
 // reduce facet number to 12 if rounding is not desired
-function fn_for_negative_z(round_z_negative, fn=12) = round_z_negative ? 0 : fn;
+function fn_for_negative_z(round_z_negative, fn=12) = round_z_negative ? 30 : fn;
