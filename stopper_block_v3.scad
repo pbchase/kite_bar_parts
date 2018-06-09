@@ -151,7 +151,13 @@ module trimline_holes(){
 module magnet_hole() {
     translate([$overall_width/2, $distance_back_from_front, 0])
         rotate([0,0,0])
-            cylinder(r=$magnet_radius,,h=$magnet_height);
+            union() {
+                cylinder(r=$magnet_radius,,h=$magnet_height);
+                // Use a cone-shaped bottom to the magnet hole to reduce the
+                // risk of print overhang issues
+                translate([0,0,$magnet_height])
+                    cylinder(r1=$magnet_radius,r2=0,h=$magnet_radius*tan(25));
+            }
 }
 
 
