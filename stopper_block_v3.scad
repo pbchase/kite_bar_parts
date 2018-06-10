@@ -88,16 +88,14 @@ module moveable_stopper() {
         }
         // Upper section
         difference() {
-            // Prism for Upper
+            // Prism for Upper section
             maximum_width_of_upper_section = (width_near_kite + (overall_width - width_near_kite) * ratio_of_upper_section_to_lower_section_depth) *0.96;
             scale_in_x_along_increasing_y = width_near_kite/maximum_width_of_upper_section;
-            echo(scale_in_x_along_increasing_y);
             trapMatrixForUpper = [
                 [1, 1, 1],
-                [0.9218, 1, 1],
+                [scale_in_x_along_increasing_y, 1, 1],
                 [.65, 1/1.618, 1]
             ];
-            echo(trapMatrixForUpper);
             x_offset_of_upper_section = (overall_width - maximum_width_of_upper_section)/2 ;
             translate([x_offset_of_upper_section, overall_depth * (1-ratio_of_upper_section_to_lower_section_depth), thickness_of_main_body - 2*r_base])
                 trapCube([maximum_width_of_upper_section, overall_depth * ratio_of_upper_section_to_lower_section_depth, overall_height - thickness_of_main_body +2*r_base], trapMatrixForUpper, radius=r_base, round_z_negative=true);
