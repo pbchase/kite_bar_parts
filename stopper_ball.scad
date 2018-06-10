@@ -15,9 +15,10 @@ trimline_bore_r=5/16/2 * 25.4;
 trimline_bore_length = 2 * ball_r+2;
 
 // Define dimensions of the two small cross bores
-cross_bore_r=1/8/2 * 25.4;
-cross_bore_l=2 * ball_r;
-cross_bore_lateral_offset= 0.75 * ball_r;
+cross_bore_r=3;
+cross_bore_lateral_offset= 6 + 0.5 * (1/8*25.4);
+major_radius_of_cross_bore_torus = cross_bore_lateral_offset / 2;
+cross_bore_z_offset = - ball_r * 0.75;
 
 // Define dimensions of flag lone path in terms of the trimline bore and the ball radius
 flag_line_width=2*trimline_bore_r;
@@ -50,18 +51,17 @@ difference() {
     }
     union() {
         cylinder(h=trimline_bore_length,r=trimline_bore_r,center=true);
-        cross_bore(cross_bore_r, cross_bore_l, cross_bore_lateral_offset, $fn=8);
-        cross_bore(cross_bore_r, cross_bore_l, -cross_bore_lateral_offset, $fn=8);
+        cross_bore(cross_bore_r, major_radius_of_cross_bore_torus, cross_bore_lateral_offset, cross_bore_z_offset);
+        cross_bore(cross_bore_r, major_radius_of_cross_bore_torus, -cross_bore_lateral_offset, cross_bore_z_offset);
         flag_line_path(width=flag_line_width,path_r=flag_line_path_radius);    }
 }
 
 
-module cross_bore(r,l,offset) {
-    rotate(a=[0,90,0]) {
-        translate([0,offset,0]) {
-            cylinder(h=l,r=r,center=true);
-        }
-    }
+module cross_bore(minor_radius,major_radius,y_offset, z_offset) {
+    translate([0,y_offset,z_offset])
+        rotate(a=[90,0,0])
+            torus(minor_radius,major_radius);
+
 }
 
 
@@ -90,4 +90,13 @@ module quarter_torus(width, path_r) {
             translate([path_r,-path_r,0]) cube(2*path_r,center=true);
         }
     }
+}
+
+module torus(minor_radius, major_radius){
+    // minor_radius is the radius of the cross section of the torus
+    // major_radius is the radius torus
+    //$fn=30;
+    rotate_extrude(convexity = 10)
+        translate([minor_radius+major_radius,0,0])
+            circle(minor_radius);
 }
