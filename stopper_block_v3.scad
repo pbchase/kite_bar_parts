@@ -94,7 +94,7 @@ module moveable_stopper() {
             trapMatrixForUpper = [
                 [1, 1, 1],
                 [scale_in_x_along_increasing_y, 1, 1],
-                [.65, 1/1.618, 1]
+                [1/1.618, 1/1.618, 1]
             ];
             x_offset_of_upper_section = (overall_width - maximum_width_of_upper_section)/2 ;
             translate([x_offset_of_upper_section, overall_depth * (1-ratio_of_upper_section_to_lower_section_depth), thickness_of_main_body - 2*r_base])
