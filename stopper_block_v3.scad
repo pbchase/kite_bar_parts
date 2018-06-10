@@ -125,21 +125,18 @@ module cut_away_upper() {
 
 module trimline_holes(){
     x_displacement = thickness_of_main_body*0.5;
+    trim_line_r = trim_line_diameter/2;
+    trim_line_drill_hole_length = overall_depth + trim_line_diameter;
     // Reduce the facet count so that the upper surfaces are 22.5 degrees above horizontal.
     $fn=8;
     // Drill left trim line hole
-    translate([x_displacement,-trim_line_diameter/2,thickness_of_main_body/2])
+    translate([x_displacement,-trim_line_r,x_displacement])
         rotate([-90,0,-trim_line_angle])
-            union(){
-                cylinder(r=trim_line_diameter/2, h=overall_depth + trim_line_diameter);
-            }
+            cylinder(r=trim_line_r, h=trim_line_drill_hole_length);
     // Drill right trim line hole
-    translate([overall_width - x_displacement, -trim_line_diameter/2, thickness_of_main_body/2])
+    translate([overall_width - x_displacement, -trim_line_r, x_displacement])
         rotate([-90,0,trim_line_angle])
-
-            union(){
-                cylinder(r=trim_line_diameter/2, h=overall_depth + trim_line_diameter);
-            }
+            cylinder(r=trim_line_r, h=trim_line_drill_hole_length);
 }
 
 
