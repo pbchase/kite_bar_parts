@@ -50,7 +50,8 @@ ratio_of_upper_section_to_lower_section_depth = 0.25;
 safety_line_diameter=9.5;
 
 // Cross bore for bungie dimensions
-cross_bore_diameter=6;
+cross_bore_depth=4;
+cross_bore_width=10;
 cross_bore_cl_to_end=12;
 
 // trim hole line dimensions
@@ -60,7 +61,7 @@ trim_line_angle=8;
 // Define magnet hole
 magnet_radius=3/8*25.4/2;
 magnet_height=3/8*25.4 - 0.5;
-distance_back_from_front = overall_depth * 0.45;
+distance_back_from_front = overall_depth * 0.39;
 
 oversize=1;
 
@@ -141,7 +142,7 @@ module trimline_holes(){
  module bungie_ball_connector_path() {
     translate([overall_width/2,-1.5,thickness_of_main_body/2])
         rotate([0,90,0])
-            elliptical_torus(cross_bore_diameter/2, cross_bore_diameter/2, thickness_of_main_body/2 + 1);
+            elliptical_torus(cross_bore_depth/2, cross_bore_width/2, thickness_of_main_body/2 + 1);
 }
 
 
