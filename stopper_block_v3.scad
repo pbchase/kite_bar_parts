@@ -22,6 +22,9 @@ License: To the extent possible under law, Philip B Chase has waived all
 
 // stopper block for movable stopper
 
+use <elliptical_torus.scad>;
+use <trapezoided_cube.scad>;
+
 $fn=36;  // a circle has 36 sides
 //bevel(r1=10, r2=8);
 
@@ -188,88 +191,3 @@ module bevel(r1, r2){
     }
 }
 
-
-module elliptical_torus(a_axis, b_axis, major_radius){
-    // a_axis is the width of the cross section on the X-Y plane
-    // b_axis is the height of the cross section on the Z plane
-    // major_radius is the radius torus
-    //$fn=30;
-    rotate_extrude(convexity = 10)
-        translate([a_axis+major_radius,0,0])
-            ellipse(a_axis, b_axis);
-}
-
-module ellipse(a_axis, b_axis) {
-    scale([a_axis/a_axis,b_axis/a_axis])
-        circle(r=a_axis);
-}
-
-
-// Trapezoided cube
-// Philip Chase
-// Based on Simple and fast corned cube by Anaximandro de Godinho.
-module trapCube( size, trapMatrix=[1,1,1], radius=1, center=false, round_z_negative=true )
-{
-	l = len( size );
-	if( l == undef )
-		_trapX( size, size, size, trapMatrix, radius, center, round_z_negative );
-	else
-		_trapX( size[0], size[1], size[2], trapMatrix, radius, center, round_z_negative );
-}
-
-module _trapX( x, y, z, trapMatrix, r, center, round_z_negative)
-{
-    if( center )
-        translate( [-x/2, -y/2, -z/2] )
-        __trapX( x, y, z, trapMatrix, r, round_z_negative);
-    else
-        __trapX( x, y, z, trapMatrix, r, round_z_negative);
-}
-
-module __trapX(	x, y, z, trapMatrix, r, round_z_negative)
-{
-    // trapezoidal matrix is defined as
-    //[
-    //    [scale_x, scale_in_y_along_increasing_x, scale_in_z_along_increasing_x],
-    //    [scale_in_x_along_increasing_y, scale_y, scale_in_z_along_increasing_y],
-    //    [scale_in_x_along_increasing_z, scale_in_y_along_increasing_z, scale_z]
-    //]
-
-    //compute deltas for each dimension
-    dy_wrt_x = y * (1 - trapMatrix[0][1])/2;
-    dz_wrt_x = z * (1 - trapMatrix[0][2])/2;
-    dx_wrt_y = x * (1 - trapMatrix[1][0])/2;
-    dz_wrt_y = z * (1 - trapMatrix[1][2])/2;
-    dx_wrt_z = x * (1 - trapMatrix[2][0])/2;
-    dy_wrt_z = y * (1 - trapMatrix[2][1])/2;
-
-    // Use differing facet counts between z- and z+
-    $fn_z_negative = $fn_for_negative_z(round_z_negative);
-
-	//TODO: discount r.
-    rC = r;
-	hull()
-	{
-        //origin
-        translate( [rC, rC, rC] )
-			sphere( r, $fn=$fn_z_negative);
-		translate( [rC+dx_wrt_y, y-rC, rC+dz_wrt_y] )
-			sphere( r, $fn=$fn_z_negative );
-		translate( [rC+dx_wrt_z, rC+dy_wrt_z, z-rC] )
-			sphere( r );
-		translate( [rC+dx_wrt_z+dx_wrt_y, y-rC-dy_wrt_z, z-rC-dz_wrt_y] )
-			sphere( r );
-
-		translate( [x-rC, rC+dy_wrt_x, rC+dz_wrt_x] )
-			sphere( r, $fn=$fn_z_negative );
-		translate( [x-rC-dx_wrt_y, y-rC-dy_wrt_x, rC+dz_wrt_x+dz_wrt_y] )
-			sphere( r, $fn=$fn_z_negative );
-		translate( [x-rC-dx_wrt_z, rC+dy_wrt_x+dy_wrt_z, z-rC-dz_wrt_x] )
-			sphere( r );
-		translate( [x-rC-dx_wrt_y-dx_wrt_z, y-rC-dy_wrt_x-dy_wrt_z, z-rC-dz_wrt_x-dz_wrt_y] )
-			sphere( r );
-	}
-}
-
-// reduce facet number to 12 if rounding is not desired
-function $fn_for_negative_z(round_z_negative, $fn=12) = round_z_negative ? 30 : $fn;
