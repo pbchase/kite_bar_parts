@@ -35,5 +35,5 @@ module ellipse(a_axis, b_axis) {
 
 module elliptical_sphere(x_thickness,y_thickness,z_thickness) {
 scale([x_thickness,y_thickness,z_thickness])
-    sphere(r=1);
+    sphere(r=0.5);
 }
