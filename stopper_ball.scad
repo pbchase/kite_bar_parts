@@ -24,11 +24,31 @@ cross_bore_z_offset = - ball_r * 0.75;
 flag_line_width=2*trimline_bore_r;
 flag_line_path_radius=ball_r;
 
+// Base underslope geometry
+// To prevent printing issue with the overhung underside of the sphere, replace it with a cone with a 22 degree slope
+underslope = tan(30);
+base_underslope_height = ball_r * 0.2;
+base_underslope_upper_radius = sqrt(pow(ball_r,2) - pow(ball_r-base_underslope_height, 2));
+echo(base_underslope_upper_radius);
+base_underslope_height_revised = base_underslope_height - (ball_r - sqrt(pow(ball_r,2) - pow(trimline_bore_r, 2)));
+base_underslope_lower_radius = base_underslope_upper_radius - base_underslope_height_revised/underslope;
+
 // set the facet number high (40-60) for final generation
 $fn = 40;
 
 difference() {
-    sphere(ball_r);
+    union() {
+        difference() {
+            sphere(ball_r);
+            // truncate underside of sphere so we can replace it with a cone.
+            edge_length_of_cube = 2*ball_r;
+            translate([-ball_r,-ball_r,-3*ball_r+base_underslope_height]) {
+                cube([edge_length_of_cube,edge_length_of_cube,edge_length_of_cube]);
+            }
+        }
+        translate([0,0,-ball_r])
+            cylinder(h = base_underslope_height, r1 = base_underslope_lower_radius, r2 = base_underslope_upper_radius);
+    }
     union() {
         cylinder(h=trimline_bore_length,r=trimline_bore_r,center=true);
         cross_bore(cross_bore_r, major_radius_of_cross_bore_torus, cross_bore_lateral_offset, cross_bore_z_offset);
@@ -47,7 +67,7 @@ module cross_bore(minor_radius,major_radius,y_offset, z_offset) {
 
 module flag_line_path(width,path_r) {
     difference() {
-        translate([0.3*width,0,-0.1*width]){  // these offsets were determined through trial and error to resemble successful hand-carved pieces
+        translate([0.3*width,0,-0.1*width]){  // these offsets were determined through trial an error to resemble successful hand-carved pieces
             union() { // make a shicane from three 1/4 tori
                 rotate(a=[90,90,0]) quarter_torus(width, path_r);
                 rotate([-90,0,0]) translate([2*path_r, 0, 0]) quarter_torus(width, path_r);
