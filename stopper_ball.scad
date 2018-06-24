@@ -25,13 +25,16 @@ flag_line_width=2*trimline_bore_r;
 flag_line_path_radius=ball_r;
 
 // Base underslope geometry
-// To prevent printing issue with the overhung underside of the sphere, replace it with a cone with a 22 degree slope
+// To prevent printing issues with the overhung underside of the sphere, replace it with a cone with a 22 degree slope (or greater)
 underslope = tan(30);
 base_underslope_height = ball_r * 0.2;
+// fatten the contact surface at the base of the cone at the bottom of
+//   the ball to improve contact with raft and strength while printing
+additional_radius_for_raft_contact_patch = 0.5;
 base_underslope_upper_radius = sqrt(pow(ball_r,2) - pow(ball_r-base_underslope_height, 2));
 echo(base_underslope_upper_radius);
 base_underslope_height_revised = base_underslope_height - (ball_r - sqrt(pow(ball_r,2) - pow(trimline_bore_r, 2)));
-base_underslope_lower_radius = base_underslope_upper_radius - base_underslope_height_revised/underslope;
+base_underslope_lower_radius = base_underslope_upper_radius - base_underslope_height_revised/underslope + additional_radius_for_raft_contact_patch;
 
 // set the facet number high (40-60) for final generation
 $fn = 40;
