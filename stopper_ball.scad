@@ -70,7 +70,7 @@ module cross_bore(minor_radius,major_radius,y_offset, z_offset) {
 
 module flag_line_path(width,path_r) {
     difference() {
-        translate([0.3*width,0,-0.1*width]){  // these offsets were determined through trial an error to resemble successful hand-carved pieces
+        translate([0.3*width,0,-0.1*width]){  // these offsets were determined through trial and error to resemble successful hand-carved pieces
             union() { // make a shicane from three 1/4 tori
                 rotate(a=[90,90,0]) quarter_torus(width, path_r);
                 rotate([-90,0,0]) translate([2*path_r, 0, 0]) quarter_torus(width, path_r);
