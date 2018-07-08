@@ -56,9 +56,9 @@ magnet_height=3/8*25.4 - 0.5;
 distance_back_from_front = overall_depth * 0.39;
 
 // Define elliptical flange
-flange_extension = 8;
+flange_extension = 12;
 flange_a_thickness = width_near_kite + 2 * flange_extension;
-flange_b_thickness = thickness_of_main_body + 2 * flange_extension + 9;
+flange_b_thickness = thickness_of_main_body + 2 * flange_extension + 1;
 elliptical_flange_thickness = 8;
 flange_y_translation = (overall_depth - elliptical_flange_thickness * 0.5) + 0.4;
 
