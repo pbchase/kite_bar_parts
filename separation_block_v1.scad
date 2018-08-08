@@ -12,12 +12,12 @@
 /* License: To the extent possible under law, Philip B Chase has waived all copyright and related or neighboring rights to 3D model for a separation block for a kite-bar control system. This work is published from: United States.  See: http://creativecommons.org/publicdomain/zero/1.0/
 */
 
-use <trapezoided_cube.scad>;
+use <elliptical_torus.scad>;
 
 $fn=30;
 
 // Body dimensions
-overall_width=22;  // x
+overall_width=20;  // x
 overall_depth=12;  // y
 overall_height=25; // z
 // radii of block corners and edges
@@ -34,7 +34,7 @@ main_line_bore_x_offset = 6;
 
 
 difference() {
-    body();
+    elliptical_body();
     central_bore(central_bore_radius, central_bore_length);
     flying_line_bore(main_line_bore_radius, main_line_bore_length, main_line_bore_x_offset);
     flying_line_bore(main_line_bore_radius, main_line_bore_length, -main_line_bore_x_offset);
@@ -50,12 +50,13 @@ module flying_line_bore(radius, length, x_offset) {
         cylinder(h=length, r=radius, center=true);
 }
 
-module body() {
-    trapMatrixForBody = [
-                        [1, 1, 1],
-                        [1, 1, 1],
-                        [1, 1, 1]
-                    ];
-    translate([-0.5*overall_width, -0.5*overall_depth, -0.5*overall_height])
-        trapCube([overall_width, overall_depth, overall_height], trapMatrixForBody, radius=r_body, round_z_negative=false);
+module elliptical_body() {
+    end_sphere_height = 5;
+    z_translation = overall_height/2 - end_sphere_height/2;
+    hull() {
+        translate([0,0,z_translation])
+            elliptical_sphere(overall_width, overall_depth, end_sphere_height);
+        translate([0,0,-z_translation])
+            elliptical_sphere(overall_width, overall_depth, end_sphere_height);
+    }
 }
