@@ -18,7 +18,7 @@ $fn=30;
 
 // Body dimensions
 overall_width=20;  // x
-overall_depth=12;  // y
+overall_depth=14;  // y
 overall_height=25; // z
 // radii of block corners and edges
 r_body = 3;
