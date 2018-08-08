@@ -17,7 +17,7 @@ use <elliptical_torus.scad>;
 $fn=30;
 
 // Body dimensions
-overall_width=20;  // x
+overall_width=22;  // x
 overall_depth=14;  // y
 overall_height=25; // z
 // radii of block corners and edges
@@ -30,7 +30,7 @@ central_bore_length = overall_height + 2;
 // Dimensions of main line bore
 main_line_bore_radius = 0.125 * 25.4 / 2; 
 main_line_bore_length = overall_height + 2;
-main_line_bore_x_offset = 6;
+main_line_bore_x_offset = 6.5;
 
 
 difference() {
