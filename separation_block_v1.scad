@@ -12,12 +12,12 @@
 /* License: To the extent possible under law, Philip B Chase has waived all copyright and related or neighboring rights to 3D model for a separation block for a kite-bar control system. This work is published from: United States.  See: http://creativecommons.org/publicdomain/zero/1.0/
 */
 
-use <elliptical_torus.scad>;
+use <rounded_cylinder.scad>;
 
 $fn=30;
 
 // Body dimensions
-overall_width=22;  // x
+overall_width=23;  // x
 overall_depth=14;  // y
 overall_height=25; // z
 // radii of block corners and edges
@@ -34,7 +34,7 @@ main_line_bore_x_offset = 6.5;
 
 
 difference() {
-    elliptical_body();
+    cylindrical_body(overall_width, overall_depth, overall_height, r_body);
     central_bore(central_bore_radius, central_bore_length);
     flying_line_bore(main_line_bore_radius, main_line_bore_length, main_line_bore_x_offset);
     flying_line_bore(main_line_bore_radius, main_line_bore_length, -main_line_bore_x_offset);
@@ -50,13 +50,10 @@ module flying_line_bore(radius, length, x_offset) {
         cylinder(h=length, r=radius, center=true);
 }
 
-module elliptical_body() {
-    end_sphere_height = 5;
-    z_translation = overall_height/2 - end_sphere_height/2;
-    hull() {
-        translate([0,0,z_translation])
-            elliptical_sphere(overall_width, overall_depth, end_sphere_height);
-        translate([0,0,-z_translation])
-            elliptical_sphere(overall_width, overall_depth, end_sphere_height);
+module cylindrical_body(overall_width, overall_depth, overall_height, radius_of_edges) {
+    major_radius = overall_width/2 - radius_of_edges;
+    y_scale = overall_depth/overall_width;
+    scale([1,y_scale,1]) {
+        rounded_cylinder(overall_height, major_radius, radius_of_edges);
     }
 }
