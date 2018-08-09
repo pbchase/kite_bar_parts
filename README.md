@@ -56,6 +56,10 @@ Most of these designs do not need supports. In some cases overhangs have been sp
 
 ![](images/stopper_block.png)
 
+[separation\_block](separation_block_v1.scad) - This component transfers load from the main flying lines by providing a pair of parallel bore holes. Each flying line passes through a bore hole. The flying line is trapped on the lower side of the block via a larks head of relatively fat line. The pair of bore holes surround a larger, central bore hole. The central bore hole allows a heavier line to be secured to the separation block. The upper end is secured via an overhand knot. The lower end of the central line entraps a low friction ring that acts as a pulley for the trim line.
+
+![](images/separation_block_v1.png)
+
 [wichard\_snaphook\_release\_cone](wichard_snaphook_release_cone.scad) - a cone to open the gate of a Wichard Snap shackle.  This component has never been tested.
 
 ![](images/wichard_snaphook_release_cone.png)
