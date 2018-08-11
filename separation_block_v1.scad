@@ -17,20 +17,21 @@ use <rounded_cylinder.scad>;
 $fn=30;
 
 // Body dimensions
-overall_width=23;  // x
-overall_depth=14;  // y
-overall_height=25; // z
+overall_width=29;  // x
+overall_depth=18;  // y
+overall_height=27; // z
 // radii of block corners and edges
 r_body = 3;
 
 // Dimensions of central bore
-central_bore_radius = 3/16 * 25.4 / 2;
+// Drill out to 3/16"
+central_bore_radius = 13/64 * 25.4 / 2;
 central_bore_length = overall_height + 2;
 
 // Dimensions of main line bore
 main_line_bore_radius = 0.125 * 25.4 / 2; 
 main_line_bore_length = overall_height + 2;
-main_line_bore_x_offset = 6.5;
+main_line_bore_x_offset = 8.5;
 
 
 difference() {
