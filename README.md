@@ -28,10 +28,6 @@ Most of these designs do not need supports. In some cases overhangs have been sp
 
 ![](images/wichard_snaphook_handle_golf_tee_style.png)
 
-[wichard\_snaphook\_handle](wichard_snaphook_handle.scad) - a cone-and-ball handle to open the gate of a Wichard Snap shackle. The wall thickness is thin at the base of the cone and the transition is harsh.
-
-![](images/wichard_snaphook_handle.png)
-
 
 ### Untested models
 
@@ -43,43 +39,11 @@ Most of these designs do not need supports. In some cases overhangs have been sp
 
 ![](images/stopper_block_v4.png)
 
-
-[stopper\_block\_v3](stopper_block_v3.scad) - This block is used in tandem with the stopper ball to form a moveable stopper. This 3D model has never been tested in the field. It is 4mm narrow than stopper\_block\_v2 and uses octagonal horizontal bores to reduce overhang issues when printing.
-
-![](images/stopper_block_v3.png)
-
-[stopper\_block\_v2](stopper_block_v2.scad) - This block is used in tandem with the stopper ball to form a moveable stopper. This 3D model has never been tested. That said, it is based on a hand-made design, cut from Delrin, that has been tested extensively. This model is closer to the hand-made design than the original [stopper\_block](stopper_block.scad) model.
-
-![](images/stopper_block_v2.png)
-
-[stopper\_block](stopper_block.scad) - This block is used in tandem with the stopper ball to form a moveable stopper.  This 3D model has never been tested. That said, it is based on a hand-made design, cut from Delrin, that has been tested extensively.  The edges of this model are far harsher than what is possible when machining such a block from Delrin. The harsh edges might make it unsuitable for regular use.
-
-![](images/stopper_block.png)
-
 [separation\_block](separation_block_v1.scad) - This component transfers load from the main flying lines by providing a pair of parallel bore holes. Each flying line passes through a bore hole. The flying line is trapped on the lower side of the block via a larks head of relatively fat line. The pair of bore holes surround a larger, central bore hole. The central bore hole allows a heavier line to be secured to the separation block. The upper end is secured via an overhand knot. The lower end of the central line entraps a low friction ring that acts as a pulley for the trim line.
 
 ![](images/separation_block_v1.png)
 
-[wichard\_snaphook\_release\_cone](wichard_snaphook_release_cone.scad) - a cone to open the gate of a Wichard Snap shackle.  This component has never been tested.
-
-![](images/wichard_snaphook_release_cone.png)
-
-
-### Primitives
-
-[elliptical\_cone](elliptical_cone.scad) - a primitive the generates a vertically orients cone with a profile of 1/4 of an ellipse.
-
-![](images/elliptical_cone.png)
-
-
-[elliptical\_torus](elliptical_torus.scad) - a primitive the generates a torus with a eliptical cross section. It includes a primitive for an ellipse as well.
-
-![](images/elliptical_torus.png)
-
-
-[fillet\_around\_cylinder\_base](fillet_around_cylinder_base.scad) - a primitive that generates a cylinder surrounded by a 1/4 circle fillet.
-
-![](images/fillet_around_cylinder_base.png)
+Several [deprecated designs](deprecated.md) and [primitives](primitives.md) used in many of these designs are also available in this repo.
 
 
 ## Contributing
