@@ -24,7 +24,7 @@ Most of these designs do not need supports. In some cases overhangs have been sp
 
 ## Tested models
 
-[wichard\_snaphook\_handle\_golf\_tee\_style](wichard_snaphook_handle_golf_tee_style.scad) - a cone-and-flange handle to open the gate of a Wichard Snap shackle.
+[wichard\_snaphook\_handle\_golf\_tee\_style](wichard_snaphook_handle_golf_tee_style.scad) - a cone-and-flange handle to open the gate of a Wichard Snap shackle. An [STL file](printable/wichard_snaphook_handle_golf_tee_style_8677c59.stl) is available.
 
 ![](images/wichard_snaphook_handle_golf_tee_style.png)
 
