@@ -36,7 +36,7 @@ echo("main_line_bore_x_offset", main_line_bore_x_offset);
 // lines would require a larger bore diameter.
 // 
 trim_line_bore_oversize_factor = 1.10;
-trim_line_diameter = 5;
+trim_line_diameter = 6;
 trim_line_bore_minor_radius = trim_line_diameter * trim_line_bore_oversize_factor / 2;
 trim_line_bore_major_radius = 2.4 * trim_line_diameter / 2;
 trim_line_bore_major_radius = 4 * trim_line_diameter / 2;
