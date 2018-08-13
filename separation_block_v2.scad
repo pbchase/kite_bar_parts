@@ -19,7 +19,7 @@ use <rounded_cylinder.scad>;
 $fn=30;
 
 // Body dimensions
-overall_width=25;  // x
+overall_width=26;  // x
 // overall_depth, the y-axis dimension, is a product of the trim_line bore dimensions
 overall_height=30; // z
 // radii of block corners and edges
@@ -29,7 +29,7 @@ r_body = 3;
 main_line_bore_radius = 0.125 * 25.4 / 2;
 main_line_bore_length = overall_height + 2;
 main_line_bore_x_offset = overall_width/3.4;
-
+echo("main_line_bore_x_offset", main_line_bore_x_offset);
 // Dimensions of trim line bore
 // The central bore is a half torus with a minor diameter large 
 // enough to accommodate a 5mm line. Larger, more comfortable trim 
@@ -43,8 +43,8 @@ trim_line_bore_major_radius = 4 * trim_line_diameter / 2;
 trim_line_bore_translation = -1 * (trim_line_bore_major_radius);
 
 overall_depth= 2 * (trim_line_bore_major_radius - trim_line_bore_minor_radius);  // y
-echo (overall_depth);
-echo (overall_depth * (overall_height/2 + trim_line_bore_translation) + 0.5 * 3.1415 * pow(2,trim_line_bore_major_radius-trim_line_bore_minor_radius) );
+echo ("overall_depth",overall_depth);
+echo ("cross-sectional area under trimline", overall_depth * (overall_height/2 + trim_line_bore_translation) + 0.5 * 3.1415 * pow(2,trim_line_bore_major_radius-trim_line_bore_minor_radius) );
 
 // Assemble the primitives 
 difference() {
@@ -61,8 +61,17 @@ module trim_line_bore(major_radius, minor_radius, z_translation) {
 
     translate([0,0,z_translation])
         difference() {
-            rotate([0,90,0])
+            rotate([0,90,0]) {
                 torus(major_radius, minor_radius);
+                translate([14*major_radius,0,0])
+                    torus(15*major_radius, minor_radius);
+                translate([major_radius,0,0])
+                    torus(2*major_radius, minor_radius);
+                translate([0.5* major_radius,0,0])
+                    torus(1.5*major_radius, minor_radius);
+                translate([0.2* major_radius,0,0])
+                    torus(1.2*major_radius, minor_radius);
+            }
             translate([0,0,-0.5*cube_edge])
                 cube(cube_edge,center=true);
         }
