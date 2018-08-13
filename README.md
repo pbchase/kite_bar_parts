@@ -31,7 +31,10 @@ Most of these designs do not need supports. In some cases overhangs have been sp
 
 ### Untested models
 
-[stopper\_ball](stopper_ball.scad) - The ball used in a moveable stopper on a kite bar trim line. This component has never been tested.
+[stopper\_ball](stopper_ball.scad) - The ball used in a moveable stopper on a kite bar trim line. This component has never been tested.  STL files have been generated for
+[3mm\_amsteel\_blue\_trimline](printable/stopper_ball_a32e16a_3mm_amsteel_blue_trimline.stl),
+[5mm\_amsteel\_blue\_trimline](printable/stopper_ball_a32e16a_5mm_amsteel_blue_trimline.stl), and
+[5mm\_ultrex\_trimline](printable/stopper_ball_a32e16a_5mm_ultrex_trimline.stl).
 
 ![](images/stopper_ball.png)
 
