@@ -6,7 +6,7 @@
 // See http://philipbchase.com/moveable-stoppers/
 // Make one per kite bar
 // Author: Philip B Chase, <philipbchase@gmail.com>
-/* This component transfers load from the main flying lines by providing a pair of parallel bore holes. Each flying line passes through a bore hole. The flying line is trapped on the lower side of the block via a larks head of relatively fat line. The curved central bore provides low friction path for the trim line. 
+/* This component transfers load from the main flying lines by providing a pair of parallel bore holes. Each flying line passes through a bore hole. The flying line is trapped on the lower side of the block via a larks head of relatively fat line. The pair of bore holes surround a larger, toroidal central bore hole. The curved central bore provides a low friction path for the trim line. 
 
     This component should be printed with 100% infill.
 
