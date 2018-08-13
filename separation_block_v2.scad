@@ -19,16 +19,16 @@ use <rounded_cylinder.scad>;
 $fn=30;
 
 // Body dimensions
-overall_width=29;  // x
+overall_width=25;  // x
 // overall_depth, the y-axis dimension, is a product of the trim_line bore dimensions
-overall_height=40; // z
+overall_height=30; // z
 // radii of block corners and edges
 r_body = 3;
 
 // Dimensions of main line bore
 main_line_bore_radius = 0.125 * 25.4 / 2;
 main_line_bore_length = overall_height + 2;
-main_line_bore_x_offset = 8.5;
+main_line_bore_x_offset = overall_width/3.4;
 
 // Dimensions of trim line bore
 // The central bore is a half torus with a minor diameter large 
@@ -40,12 +40,11 @@ trim_line_diameter = 5;
 trim_line_bore_minor_radius = trim_line_diameter * trim_line_bore_oversize_factor / 2;
 trim_line_bore_major_radius = 2.4 * trim_line_diameter / 2;
 trim_line_bore_major_radius = 4 * trim_line_diameter / 2;
-trim_line_bore_translation = -1 * (trim_line_bore_major_radius + trim_line_bore_minor_radius);
-trim_line_bore_translation = 0;
-
-echo (trim_line_bore_major_radius-trim_line_bore_minor_radius * 2 * (0.5 * overall_height) + 0.5 * 3.1415 * pow(2,trim_line_bore_major_radius-trim_line_bore_minor_radius));
+trim_line_bore_translation = -1 * (trim_line_bore_major_radius);
 
 overall_depth= 2 * (trim_line_bore_major_radius - trim_line_bore_minor_radius);  // y
+echo (overall_depth);
+echo (overall_depth * (overall_height/2 + trim_line_bore_translation) + 0.5 * 3.1415 * pow(2,trim_line_bore_major_radius-trim_line_bore_minor_radius) );
 
 // Assemble the primitives 
 difference() {
