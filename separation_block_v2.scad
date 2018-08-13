@@ -21,9 +21,14 @@ $fn=30;
 // Body dimensions
 overall_width=29;  // x
 // overall_depth, the y-axis dimension, is a product of the trim_line bore dimensions
-overall_height=27; // z
+overall_height=40; // z
 // radii of block corners and edges
 r_body = 3;
+
+// Dimensions of main line bore
+main_line_bore_radius = 0.125 * 25.4 / 2;
+main_line_bore_length = overall_height + 2;
+main_line_bore_x_offset = 8.5;
 
 // Dimensions of trim line bore
 // The central bore is a half torus with a minor diameter large 
@@ -34,14 +39,13 @@ trim_line_bore_oversize_factor = 1.10;
 trim_line_diameter = 5;
 trim_line_bore_minor_radius = trim_line_diameter * trim_line_bore_oversize_factor / 2;
 trim_line_bore_major_radius = 2.4 * trim_line_diameter / 2;
+trim_line_bore_major_radius = 4 * trim_line_diameter / 2;
 trim_line_bore_translation = -1 * (trim_line_bore_major_radius + trim_line_bore_minor_radius);
+trim_line_bore_translation = 0;
 
-overall_depth= 2 * (trim_line_bore_major_radius);  // y
+echo (trim_line_bore_major_radius-trim_line_bore_minor_radius * 2 * (0.5 * overall_height) + 0.5 * 3.1415 * pow(2,trim_line_bore_major_radius-trim_line_bore_minor_radius));
 
-// Dimensions of main line bore
-main_line_bore_radius = 0.125 * 25.4 / 2; 
-main_line_bore_length = overall_height + 2;
-main_line_bore_x_offset = 8.5;
+overall_depth= 2 * (trim_line_bore_major_radius - trim_line_bore_minor_radius);  // y
 
 // Assemble the primitives 
 difference() {
@@ -54,14 +58,25 @@ difference() {
 
 module trim_line_bore(major_radius, minor_radius, z_translation) {
     cube_edge = 2 * (major_radius + minor_radius);
-    difference() {
-        translate([0,0,z_translation])
+    bore_extension_length = 10 * major_radius;
+
+    translate([0,0,z_translation])
+        difference() {
             rotate([0,90,0])
                 torus(major_radius, minor_radius);
-        translate([0,0,z_translation-0.5*cube_edge])
-            cube(cube_edge,center=true);
+            translate([0,0,-0.5*cube_edge])
+                cube(cube_edge,center=true);
+        }
+    translate([0,0,z_translation + major_radius - 0.5 * bore_extension_length]) {
+        translate([0,major_radius,0])
+            cylinder(h=bore_extension_length, r=minor_radius, center=true);
+        translate([0,-major_radius,0])
+            cylinder(h=bore_extension_length, r=minor_radius, center=true);
     }
-    
+    translate([0,0,z_translation + major_radius])
+        rotate([90,0,0])
+            cylinder(h=4*major_radius, r=minor_radius, center=true);
+
 }
 
 module flying_line_bore(radius, length, x_offset) {
