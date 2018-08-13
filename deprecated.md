@@ -7,7 +7,7 @@ These designs have all been superceded by more functional shapes.
 ![](images/wichard_snaphook_handle.png)
 
 
-[stopper\_block\_v3](stopper_block_v3.scad) - This block is used in tandem with the stopper ball to form a moveable stopper. This 3D model has never been tested in the field. It is 4mm narrow than stopper\_block\_v2 and uses octagonal horizontal bores to reduce overhang issues when printing.
+[stopper\_block\_v3](stopper_block_v3.scad) - This block is used in tandem with the stopper ball to form a moveable stopper. This 3D model has never been tested in the field. It is 4mm narrow than stopper\_block\_v2 and uses octagonal horizontal bores to reduce overhang issues when printing. An [STL file](printable/stopper_block_v3_9c3c682.stl) is available.
 
 ![](images/stopper_block_v3.png)
 
