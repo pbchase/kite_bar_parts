@@ -53,10 +53,20 @@ width_near_kite = overall_width * 21/overall_depth ;
 // Flag line dimensions
 flag_line_diameter=9.5;
 
-// Cross bore for bungie dimensions
-cross_bore_depth=4;
-cross_bore_width=10;
-cross_bore_cl_to_end=12;
+// Define magnet hole
+magnet_radius=3/8*25.4/2;
+magnet_height=3/8*25.4 - 0.5;
+magnet_offset_towards_kite = overall_depth * 0.35;
+
+// bungie path dimensions
+bungie_path_depth=5;
+bungie_path_width=10;
+bungie_path_major_radius = thickness_of_main_body/2 + 1;
+bungie_path_offset_towards_kite = magnet_offset_towards_kite
+    - bungie_path_major_radius
+    - magnet_radius
+    - bungie_path_depth - 0.5;
+bungie_path_cl_to_end=20;
 
 // Trim line bore dimensions
 // The line diameters here have all been tested using a wrap of insignia cloth
@@ -70,11 +80,6 @@ bore_diameter_for_modern_5mm_amsteel = 7/32 * 25.4;
 bore_diameter_for_5mm_ultrex = 7/32 * 25.4;
 trim_line_diameter=bore_diameter_for_modern_5mm_amsteel;
 trim_line_angle=12;
-
-// Define magnet hole
-magnet_radius=3/8*25.4/2;
-magnet_height=3/8*25.4 - 0.5;
-distance_back_from_front = overall_depth * 0.39;
 
 // Define elliptical flange
 flange_extension = 12;
@@ -125,7 +130,7 @@ module moveable_stopper() {
 
         // cut away a cube that reveals the tighest interior clearances
         // Uncomment this block to activate the cut away
-        //scale([overall_width/2,distance_back_from_front,overall_width/2])
+        //scale([overall_width/2,magnet_offset_towards_kite,overall_width/2])
         //    cube(size=1);
     }
 }
@@ -147,14 +152,14 @@ module trimline_holes(){
 
 
  module bungie_ball_connector_path() {
-    translate([overall_width/2,-1.5,thickness_of_main_body/2])
+    translate([overall_width/2,bungie_path_offset_towards_kite,thickness_of_main_body/2])
         rotate([0,90,0])
-            elliptical_torus(cross_bore_depth/2, cross_bore_width/2, thickness_of_main_body/2 + 1);
+            elliptical_torus(bungie_path_depth/2, bungie_path_width/2, bungie_path_major_radius);
 }
 
 
 module magnet_hole() {
-    translate([overall_width/2, distance_back_from_front, 0])
+    translate([overall_width/2, magnet_offset_towards_kite, 0])
         rotate([0,0,0])
             cylinder(r=magnet_radius,,h=magnet_height);
 }
