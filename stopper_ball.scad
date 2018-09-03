@@ -56,9 +56,12 @@ difference() {
         cylinder(h=trimline_bore_length,r=trimline_bore_r,center=true);
         cross_bore(cross_bore_r, major_radius_of_cross_bore_torus, cross_bore_lateral_offset, cross_bore_z_offset);
         cross_bore(cross_bore_r, major_radius_of_cross_bore_torus, -cross_bore_lateral_offset, cross_bore_z_offset);
-        flag_line_path(width=flag_line_width,path_r=flag_line_path_radius);    }
+        flag_line_path(width=flag_line_width,path_r=flag_line_path_radius);
+        // uncomment either or both of these line to reveal the tight internal clearances
+        //cut_away_on_yz_plane();
+        //cut_away_on_xz_plane();
+    }
 }
-
 
 module cross_bore(minor_radius,major_radius,y_offset, z_offset) {
     translate([0,y_offset,z_offset])
@@ -102,4 +105,16 @@ module torus(minor_radius, major_radius){
     rotate_extrude(convexity = 10)
         translate([minor_radius+major_radius,0,0])
             circle(minor_radius);
+}
+
+module cut_away_on_yz_plane() {
+    translate([0,-ball_r,-ball_r])
+        scale([ball_r,2*ball_r,2*ball_r])
+            cube();
+}
+
+module cut_away_on_xz_plane() {
+    translate([-ball_r,cross_bore_lateral_offset,-ball_r])
+        scale([2*ball_r,2*ball_r,2*ball_r])
+            cube();
 }
