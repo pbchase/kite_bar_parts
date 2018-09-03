@@ -43,6 +43,7 @@ fillet_height = base_thickness/2 - 0.36;
 spherical_cap_r=5.38;
 
 component_height = base_thickness + fillet_z_axis + spherical_cap_r;
+echo("component_height: ", component_height);
 
 // The dimensions of the bore that passes through the handle and cone.
 // The bore radius needs to be just large enough to allow a sturdy spectra
