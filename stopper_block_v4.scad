@@ -129,9 +129,8 @@ module moveable_stopper() {
         magnet_hole();
 
         // cut away a cube that reveals the tighest interior clearances
-        // Uncomment this block to activate the cut away
-        //scale([overall_width/2,magnet_offset_towards_kite,overall_width/2])
-        //    cube(size=1);
+        // Uncomment this line to activate the cut away
+        //cut_away();
     }
 }
 
@@ -192,3 +191,9 @@ module bevel(r1, r2){
     }
 }
 
+module cut_away() {
+    translate([(overall_width - flange_a_thickness)/2,0,thickness_of_main_body/2])
+        scale([flange_a_thickness/2, overall_depth+elliptical_flange_thickness/2,
+                overall_width])
+            cube(size=1);
+}
