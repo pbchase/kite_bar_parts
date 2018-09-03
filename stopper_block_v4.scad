@@ -40,7 +40,7 @@ use <trapezoided_cube.scad>;
 $fn=36;  // a circle has 36 sides
 
 // provide dimensions of block from which all other shapes are removed
-overall_width=35;  // x
+overall_width=35.5;  // x
 overall_depth=38;  // y
 thickness_of_main_body=12; // z
 
@@ -48,7 +48,7 @@ thickness_of_main_body=12; // z
 r_base = 3;
 
 // block is narrowed at the kite end
-width_near_kite = overall_width * 21/38 ;
+width_near_kite = overall_width * 21/overall_depth ;
 
 // Flag line dimensions
 flag_line_diameter=9.5;
