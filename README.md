@@ -24,33 +24,44 @@ Most of these designs do not need supports. In some cases overhangs have been sp
 
 ## Tested models
 
-[wichard\_snaphook\_handle\_golf\_tee\_style](wichard_snaphook_handle_golf_tee_style.scad) - a cone-and-flange handle to open the gate of a Wichard Snap shackle. An [STL file](printable/wichard_snaphook_handle_golf_tee_style_8677c59.stl) is available.
+[wichard\_snaphook\_handle\_golf\_tee\_style](wichard_snaphook_handle_golf_tee_style.scad) - a cone-and-flange handle to open the gate of a Wichard Snap shackle. An [STL file](printable/wichard_snaphook_handle_golf_tee_style_8677c59.stl) is available. While this model reliably opens the gate and does so with little force it has opened unexpectedly in field testing. This happened three times in about 5 hours of testing. The problem occurs when the harness and the handles are forced down onto the pilot's thigh. Apprently, the base of the handle stands on the thigh as the snap hook is forced down against the thigh. This pulls the cord in the gate, pulls the opposite handle into the gate and triggers the release. See  _Untested Models_ below for the next iteration of the design.
 
 ![](images/wichard_snaphook_handle_golf_tee_style.png)
 
 
-### Untested models
-
-[stopper\_ball](stopper_ball.scad) - The ball used in a moveable stopper on a kite bar trim line. This component has never been tested.  STL files have been generated for
-[3mm\_amsteel\_blue\_trimline](printable/stopper_ball_a32e16a_3mm_amsteel_blue_trimline.stl),
-[5mm\_amsteel\_blue\_trimline](printable/stopper_ball_a32e16a_5mm_amsteel_blue_trimline.stl), and
-[5mm\_ultrex\_trimline](printable/stopper_ball_a32e16a_5mm_ultrex_trimline.stl).
+[stopper\_ball](stopper_ball.scad) - The ball used in a moveable stopper on a kite bar trim line. STL files have been generated for
+[4mm\_amsteel\_blue\_trimline](printable/stopper_ball_4mm_amsteel_30c9f20.stl) and
+[5mm\_amsteel\_blue\_trimline](printable/stopper_ball_modern_5mm_amsteel_30c9f20.stl).
 
 ![](images/stopper_ball.png)
 
-[stopper\_block\_v4](stopper_block_v4.scad) - This block is used in tandem with the stopper ball to form a moveable stopper. This 3D model has never been tested in the field. It is 4mm narrow than stopper\_block\_v2 and v3. It provides a wider path for the bungie and a flange on the back side for pushing the stopper away.  STL files have been generated for
-[3mm\_amsteel\_blue\_trimline](printable/stopper_block_v4_dbd8b84_3mm_amsteel_blue_trimline.stl),
-[5mm\_amsteel\_blue\_trimline](printable/stopper_block_v4_dbd8b84_5mm_amsteel_blue_trimline.stl), and 
-[5mm\_ultrex\_trimline](printable/stopper_block_v4_dbd8b84_5mm_ultrex_trimline.stl)
 
+[stopper\_block\_v4](stopper_block_v4.scad) - This block is used in tandem with the stopper ball to form a moveable stopper. STL files have been generated for
+[4mm\_amsteel\_blue\_trimline](printable/stopper_block_v4_4mm_amsteel_30c9f20.stl) and
+[5mm\_amsteel\_blue\_trimline](printable/stopper_block_v4_modern_5mm_amsteel_30c9f20.stl).
 
 ![](images/stopper_block_v4.png)
 
-[separation\_block](separation_block_v1.scad) - This component transfers load from the main flying lines by providing a pair of parallel bore holes. Each flying line passes through a bore hole. The flying line is trapped on the lower side of the block via a larks head of relatively fat line. The pair of bore holes surround a larger, central bore hole. The central bore hole allows a heavier line to be secured to the separation block. The upper end is secured via an overhand knot. The lower end of the central line entraps a low friction ring that acts as a pulley for the trim line. An [STL File](separation_block_v1_9a972b6.stl) is available.
+
+[separation\_block_v1](separation_block_v1.scad) - This component transfers load from the main flying lines by providing a pair of parallel bore holes. Each flying line passes through a bore hole. The flying line is trapped on the lower side of the block via a larks head of relatively fat line. The pair of bore holes surround a larger, central bore hole. The central bore hole allows a heavier line to be secured to the separation block. The upper end is secured via an overhand knot. The lower end of the central line entraps a low friction ring that acts as a pulley for the trim line. An [STL File](separation_block_v1_9a972b6.stl) is available.
 
 ![](images/separation_block_v1.png)
 
-[separation\_block](separation_block_v2.scad) - This component transfers load from the main flying lines by providing a pair of parallel bore holes. Each flying line passes through a bore hole. The flying line is trapped on the lower side of the block via a larks head of relatively fat line. The pair of bore holes surround a larger, toroidal central bore hole. The curved central bore provides a low friction path for the trim line. STL files have been generated for [5mm](printable/separation_block_v2_5mm_trimline_976518e.stl) and [6mm](printable/separation_block_v2_6mm_trimline_283f6bb.stl) trim lines.
+
+### Untested models
+
+**Three part wichard snaphook** -  This design is uses six components to form a fid and a handle to actuate a wichard snaphook. The components are
+[wichard\_snaphook\_handle\_concave\_link](wichard_snaphook_handle_concave_link.scad),
+[wichard\_snaphook\_cone\_fid](wichard_snaphook_cone_fid.scad) and
+[wichard\_snaphook\_handle\_for\_cone\_fid](wichard_snaphook_handle_for_cone_fid.scad).  [STL files](printable/) are available for each.  A pair of each component is printed to out fit a single snaphook. This design is untested.
+
+![](images/wichard_snaphook_cone_fid.png)
+![](images/wichard_snaphook_handle_concave_link.png)
+![](images/wichard_snaphook_handle_for_cone_fid.png)
+
+
+
+[separation\_block_v2](separation_block_v2.scad) - This component transfers load from the main flying lines by providing a pair of parallel bore holes. Each flying line passes through a bore hole. The flying line is trapped on the lower side of the block via a larks head of relatively fat line. The pair of bore holes surround a larger, toroidal central bore hole. The curved central bore provides a low friction path for the trim line. STL files have been generated for [5mm](printable/separation_block_v2_5mm_trimline_976518e.stl) and [6mm](printable/separation_block_v2_6mm_trimline_283f6bb.stl) trim lines. This design is untested.
 
 
 ![](images/separation_block_v2.png)
