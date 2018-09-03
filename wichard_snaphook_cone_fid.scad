@@ -6,27 +6,22 @@ Recommend this be printed in PLA with 3 shells, 100 % infill and supports.
 Author: Philip B Chase, <philipbchase@gmail.com>
 
 Assembly: This design is meant to be assembled on a short, folded, segment of
-    300# Spectra line that passes through the release gate of the snap shackle.
-    The narrow tip of each piece faces the shackle. A handle--printed separately
-    --sits below this cone fid. The spectra is folded in half,
-    tied at the loose end and pulled through the entire assembly with a wire fid.
-    The folded end of the line is locked in place by a very small segment of line
-    knotted and larksheaded on the end.
-
-Use: When pulled, this object pulls the opposite cone into the release gate to
-    open the snap hook. Once released, the cone often stays in the release gate
-    holding the gate open. This allows the gate to be reclosed with zero-force
-    before pulling the cone out of the gate.
+    300# Spectra line that passes through the release gate of the snap
+    shackle. The narrow tip of each piece faces the shackle. A handle--printed
+    separately --sits below this cone fid. The spectra is folded in half, tied
+    at the loose end and pulled through the entire assembly with a wire fid.
+    The folded end of the line is locked in place by a very small segment of
+    line knotted and larksheaded on the end.
 
 License: To the extent possible under law, Philip B Chase has waived all
-    copyright and related or neighboring rights to 3D model for a cone fid and
-    handle to release a Wichard quick release snap shackle. This work is
-    published from: United States.
+    copyright and related or neighboring rights to 3D model for a cone fid,
+    link, and handle to release a Wichard quick release snap shackle. This
+    work is published from: United States.
     See: http://creativecommons.org/publicdomain/zero/1.0/
 */
 
 /*
-The dimensions of the pull
+The dimensions of the cone fid
 
 Dimensions of the exterior cone that enters the snaphook gate. The tip radius
 and taper are the most critical dimensions.  The tip diameter must be just

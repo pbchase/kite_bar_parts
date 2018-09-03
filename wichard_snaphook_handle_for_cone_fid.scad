@@ -6,17 +6,18 @@ Recommend this be printed in PLA with 3 shells, 100 % infill with supports.
 Author: Philip B Chase, <philipbchase@gmail.com>
 
 Assembly: This design is meant to be assembled on a short, folded, segment of
-    300# Spectra line that passes through the release gate of the snap shackle.
-    The narrow tip of the cone fid--printed separately--faces the shackle. This handle sits under the cone fid. an intermediate piece concave faces sits in between.
-    The spectra is folded in half,
-    tied at the loose end and pulled through the entire assembly with a wire fid.
-    The folded end of the line is locked in place by a very small segment of line
+    300# Spectra line that passes through the release gate of the snap
+    shackle. The narrow tip of the cone fid--printed separately--faces the
+    shackle. This handle sits under the cone fid. An intermediate piece
+    concave faces sits in between. The spectra is folded in half, tied at the
+    loose end and pulled through the entire assembly with a wire fid. The
+    folded end of the line is locked in place by a very small segment of line
     knotted and larksheaded on the end.
 
 License: To the extent possible under law, Philip B Chase has waived all
-    copyright and related or neighboring rights to 3D model for a cone fid and
-    handle to release a Wichard quick release snap shackle. This work is
-    published from: United States.
+    copyright and related or neighboring rights to 3D model for a cone fid,
+    link, and handle to release a Wichard quick release snap shackle. This
+    work is published from: United States.
     See: http://creativecommons.org/publicdomain/zero/1.0/
 */
 
@@ -71,7 +72,7 @@ difference () {
             }
     }
 
-    // center bore 
+    // center bore
     translate([0,0,-bore_r - base_thickness/2])
         cylinder(h = bore_h, r1 = bore_r, r2 = bore_r);
 }
