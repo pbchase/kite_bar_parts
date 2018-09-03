@@ -5,14 +5,26 @@ control bar that uses a twin-trimline.
 
 Print one piece per control bar.
 
-Recommend this be printed in PLA with 3 shells, 80 % infill, with supports. The block should be oriented with the elliptical flange down.
+Recommend this be printed in PLA with 3 shells, 100 % infill, with supports.
+The block should be oriented with the elliptical flange down.
+
 Author: Philip B Chase, <philipbchase@gmail.com>
 
-Assembly with ball: This component is designed to be assemble with a stopper ball using a 1/8" bungie. The bungie should be 155mm long.  It should be routed through the small bore holes of the stopper ball and through the cross bore of the stopper block. The ends of the bungie should be blunt cut and super glued together.  The resulting bungie is a continuous loop with slightly lumpy, stiff section where the ends are glued together.
+Assembly with ball: This component is designed to be assemble with a stopper
+ball using a 1/8" bungie. The bungie should be 110mm long.  It should be
+routed through the small bore holes of the stopper ball and through the cross
+bore of the stopper block. The ends of the bungie should be blunt cut and
+super glued together.  The resulting bungie is a continuous loop with an
+slightly lumpy, stiff section where the ends are glued together.
 
-Assembly into bar: The trim line end should be routed into a trim line hole from the narrow end of the block, through the center bore of the ball, through the center bore of the bar, through, a retaining ball, back through the center bore of the bar, back through the center bore of the ball, into the remain trim line hole of the block, and out the narrow end of the block.
+Assembly into bar: The trim line end should be routed into a trim line hole
+from the narrow end of the block, through the center bore of the ball, through
+the center bore of the bar, through, a retaining ball, back through the center
+bore of the bar, back through the center bore of the ball, into the remain
+trim line hole of the block, and out the narrow end of the block.
 
-Use: The ball is pulled down the trim line to lower the bar stop.  The block is pulled up the trim line to raise the bar stop.
+Use: The ball is pulled down the trim line to lower the bar stop.  The block
+is pushed up the trim line to raise the bar stop.
 
 License: To the extent possible under law, Philip B Chase has waived all
     copyright and related or neighboring rights to 3D model for a stopper
