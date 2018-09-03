@@ -58,8 +58,17 @@ cross_bore_depth=4;
 cross_bore_width=10;
 cross_bore_cl_to_end=12;
 
-// trim hole line dimensions
-trim_line_diameter=5;
+// Trim line bore dimensions
+// The line diameters here have all been tested using a wrap of insignia cloth
+// around the line end to provide a threading end. This slightly increases the
+// line diameter, but is very helpful for trouting the line through the
+// stopper and ball. In each case the width of the cloth wrapped around the
+// line as 4 times the nominal line diameter.
+bore_diameter_for_4mm_amsteel = 11/64 * 25.4;
+bore_diameter_for_old_5mm_amsteel = 13/64 * 25.4;
+bore_diameter_for_modern_5mm_amsteel = 7/32 * 25.4;
+bore_diameter_for_5mm_ultrex = 7/32 * 25.4;
+trim_line_diameter=bore_diameter_for_modern_5mm_amsteel;
 trim_line_angle=12;
 
 // Define magnet hole
