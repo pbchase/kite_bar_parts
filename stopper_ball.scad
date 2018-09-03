@@ -10,13 +10,25 @@
 // Define major dimension of ball
 ball_r = 26/2;
 
-// Define dimension of large center bore
-trimline_bore_r=5/16/2 * 25.4;
+// Define dimension of large center bore for the pair of trim lines
+// The line diameters here have all been tested using a wrap of insignia cloth
+// around the line end to provide a threading end. This slightly increases the
+// line diameter, but is very helpful for routing the line through the
+// stopper and ball. In each case, the width of the cloth wrapped around the
+// line as 4 times the nominal line diameter. Aka, slightly more than Pi and
+// slightly more than one wrap.
+bore_diameter_for_4mm_amsteel = 1/4 * 25.4;
+bore_diameter_for_old_5mm_amsteel = 5/16 * 25.4;
+bore_diameter_for_modern_5mm_amsteel = 3/8 * 25.4;
+bore_diameter_for_5mm_ultrex = 3/8 * 25.4;
+trim_line_diameter=bore_diameter_for_modern_5mm_amsteel;
+
+trimline_bore_r=trim_line_diameter/2;
 trimline_bore_length = 2 * ball_r+2;
 
 // Define dimensions of the two small cross bores
 cross_bore_r=3;
-cross_bore_lateral_offset= 6 + 0.5 * (1/8*25.4);
+cross_bore_lateral_offset= 6.5 + 0.5 * (1/8*25.4);
 major_radius_of_cross_bore_torus = cross_bore_lateral_offset / 2;
 cross_bore_z_offset = - ball_r * 0.75;
 
