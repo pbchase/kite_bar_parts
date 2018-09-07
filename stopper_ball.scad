@@ -10,6 +10,10 @@
 // Define major dimension of ball
 ball_r = 26/2;
 
+// Define torus which will form the base of the sphere via a hull
+base_major_r = ball_r * 0.42;
+base_minor_r = ball_r * 0.075;
+
 // Define dimension of large center bore for the pair of trim lines
 // The line diameters here have all been tested using a wrap of insignia cloth
 // around the line end to provide a threading end. This slightly increases the
@@ -36,34 +40,16 @@ cross_bore_z_offset = - ball_r * 0.75;
 flag_line_width=2*trimline_bore_r;
 flag_line_path_radius=ball_r;
 
-// Base underslope geometry
-// To prevent printing issues with the overhung underside of the sphere, replace it with a cone with a 22 degree slope (or greater)
-underslope = tan(30);
-base_underslope_height = ball_r * 0.2;
-// fatten the contact surface at the base of the cone at the bottom of
-//   the ball to improve contact with raft and strength while printing
-additional_radius_for_raft_contact_patch = 0.5;
-base_underslope_upper_radius = sqrt(pow(ball_r,2) - pow(ball_r-base_underslope_height, 2));
-echo(base_underslope_upper_radius);
-base_underslope_height_revised = base_underslope_height - (ball_r - sqrt(pow(ball_r,2) - pow(trimline_bore_r, 2)));
-base_underslope_lower_radius = base_underslope_upper_radius - base_underslope_height_revised/underslope + additional_radius_for_raft_contact_patch;
-
 // set the facet number high (40-60) for final generation
 $fn = 40;
 
 difference() {
-    union() {
-        difference() {
-            sphere(ball_r);
-            // truncate underside of sphere so we can replace it with a cone.
-            edge_length_of_cube = 2*ball_r;
-            translate([-ball_r,-ball_r,-3*ball_r+base_underslope_height]) {
-                cube([edge_length_of_cube,edge_length_of_cube,edge_length_of_cube]);
-            }
-        }
-        translate([0,0,-ball_r])
-            cylinder(h = base_underslope_height, r1 = base_underslope_lower_radius, r2 = base_underslope_upper_radius);
+    // make the body
+    hull() {
+        sphere(ball_r);
+        base(base_major_r, base_minor_r, ball_r);
     }
+    // cut away all everything in this union
     union() {
         cylinder(h=trimline_bore_length,r=trimline_bore_r,center=true);
         cross_bore(cross_bore_r, major_radius_of_cross_bore_torus, cross_bore_lateral_offset, cross_bore_z_offset);
@@ -74,6 +60,13 @@ difference() {
         //cut_away_on_xz_plane();
     }
 }
+
+
+module base(major_radius, minor_radius, ball_r) {
+    translate([0,0,-ball_r+minor_radius])
+        torus(minor_radius,major_radius);
+}
+
 
 module cross_bore(minor_radius,major_radius,y_offset, z_offset) {
     translate([0,y_offset,z_offset])
@@ -101,7 +94,7 @@ module quarter_torus(width, path_r) {
     difference() {
         rotate_extrude()
         translate([path_r, 0, 0])
-        circle(r = width/2, $fn = 100);
+        circle(r = width/2, $fn = 30);
         union() { // remove 3/4 of the torus
             translate([path_r,path_r,0]) cube(2*path_r,center=true);
             translate([-path_r,-path_r,0]) cube(2*path_r,center=true);
