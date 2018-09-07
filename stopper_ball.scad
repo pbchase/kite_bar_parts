@@ -31,7 +31,7 @@ trimline_bore_r=trim_line_diameter/2;
 trimline_bore_length = 2 * ball_r+2;
 
 // Define dimensions of the two small cross bores
-cross_bore_r=3;
+cross_bore_r=2.5;
 cross_bore_lateral_offset= 6.5 + 0.5 * (1/8*25.4);
 major_radius_of_cross_bore_torus = cross_bore_lateral_offset / 2;
 cross_bore_z_offset = - ball_r * 0.75;
@@ -55,8 +55,7 @@ difference() {
         cross_bore(cross_bore_r, major_radius_of_cross_bore_torus, cross_bore_lateral_offset, cross_bore_z_offset);
         cross_bore(cross_bore_r, major_radius_of_cross_bore_torus, -cross_bore_lateral_offset, cross_bore_z_offset);
         flag_line_path(width=flag_line_width,path_r=flag_line_path_radius);
-        // uncomment either or both of these line to reveal the tight internal clearances
-        //cut_away_on_yz_plane();
+        // uncomment this line to reveal the tight internal clearances
         //cut_away_on_xz_plane();
     }
 }
@@ -69,8 +68,8 @@ module base(major_radius, minor_radius, ball_r) {
 
 
 module cross_bore(minor_radius,major_radius,y_offset, z_offset) {
-    translate([0,y_offset,z_offset])
-        rotate(a=[90,0,0])
+    translate([y_offset,0,z_offset])
+        rotate(a=[0,90,0])
             torus(minor_radius,major_radius);
 
 }
@@ -112,14 +111,8 @@ module torus(minor_radius, major_radius){
             circle(minor_radius);
 }
 
-module cut_away_on_yz_plane() {
-    translate([0,-ball_r,-ball_r])
-        scale([ball_r,2*ball_r,2*ball_r])
-            cube();
-}
-
 module cut_away_on_xz_plane() {
-    translate([-ball_r,cross_bore_lateral_offset,-ball_r])
+    translate([-ball_r,0,-ball_r])
         scale([2*ball_r,2*ball_r,2*ball_r])
             cube();
 }
