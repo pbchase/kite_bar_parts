@@ -81,12 +81,16 @@ bore_diameter_for_5mm_ultrex = 7/32 * 25.4;
 trim_line_diameter=bore_diameter_for_modern_5mm_amsteel;
 trim_line_angle=12;
 
-// Define elliptical flange
+// Define elliptical flange as a torus
 flange_extension = 12;
-flange_a_thickness = width_near_kite + 2 * flange_extension;
-flange_b_thickness = thickness_of_main_body + 2 * flange_extension + 1;
-elliptical_flange_thickness = 8;
-flange_y_translation = (overall_depth - elliptical_flange_thickness * 0.5) + 0.4;
+flange_thickness = 5;
+flange_major_radius = width_near_kite * 0.75;
+cross_sectional_r_in_plane = flange_extension/2;
+flange_minor_radius = bungie_path_width + thickness_of_main_body/2 - cross_sectional_r_in_plane * 0.5;
+
+cross_sectional_r_out_of_plane = flange_thickness/2;
+flange_y_translation = overall_depth - cross_sectional_r_out_of_plane/2;
+
 
 // note: this part was designed without the rotation shown below.
 //       For redesign, consider temporarily setting rotation to zero.
@@ -110,9 +114,7 @@ module moveable_stopper() {
                 translate([0,0,thickness_of_main_body/2])
                     translate([overall_width/2, flange_y_translation, 0])
                         rotate([90,0,0])
-                            elliptical_sphere(flange_a_thickness,
-                                              flange_b_thickness,
-                                              elliptical_flange_thickness);
+                            flange_as_torus(flange_major_radius, flange_minor_radius, cross_sectional_r_in_plane, cross_sectional_r_out_of_plane);
 
                 // Drill flag line path through elliptical flange
                 flag_line_path();
@@ -133,6 +135,14 @@ module moveable_stopper() {
         //cut_away();
     }
 }
+
+
+module flange_as_torus(flange_major_radius, flange_minor_radius, cross_sectional_r_in_plane, cross_sectional_r_out_of_plane) {
+    hull() {
+        scaled_elliptical_cross_section_torus(flange_major_radius, flange_minor_radius, cross_sectional_r_in_plane, cross_sectional_r_out_of_plane);
+    }
+}
+
 
 module trimline_holes(){
     x_displacement = thickness_of_main_body*0.5;
@@ -165,20 +175,19 @@ module magnet_hole() {
 
 
 module flag_line_path() {
+    bevel_offset_from_flange_cl = flange_thickness*0.20;
     translate([overall_width/2, 0, flag_line_diameter/2 + thickness_of_main_body])
         rotate([-90,0,0])
             union(){
                 // define major drill hole
                 cylinder(r=flag_line_diameter/2, h=overall_depth);
                 //define backside bevel
-                translate([0,0,flange_y_translation+elliptical_flange_thickness*0.18])
-                    rotate([+11,0,0])
-                        bevel(r1=flag_line_diameter/2+1.5, r2=flag_line_diameter/2);
+                translate([0,0,flange_y_translation+bevel_offset_from_flange_cl])
+                    bevel(r1=flag_line_diameter/2+1.5, r2=flag_line_diameter/2);
                 //define frontside bevel
-                translate([0,0,flange_y_translation-elliptical_flange_thickness*0.18])
+                translate([0,0,flange_y_translation-bevel_offset_from_flange_cl])
                     rotate([+180,0,0])
-                        rotate([-11,0,0])
-                            bevel(r1=flag_line_diameter/2+1.5, r2=flag_line_diameter/2);
+                        bevel(r1=flag_line_diameter/2+1.5, r2=flag_line_diameter/2);
             }
 }
 
@@ -193,7 +202,7 @@ module bevel(r1, r2){
 
 module cut_away() {
     translate([(overall_width - flange_a_thickness)/2,0,thickness_of_main_body/2])
-        scale([flange_a_thickness/2, overall_depth+elliptical_flange_thickness/2,
+        scale([flange_a_thickness/2, overall_depth+flange_thickness/2,
                 overall_width])
             cube(size=1);
 }
