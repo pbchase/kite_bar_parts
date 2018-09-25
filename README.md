@@ -30,8 +30,8 @@ Most of these designs do not need supports. In some cases overhangs have been sp
 
 
 [stopper\_ball](stopper_ball.scad) - The ball used in a moveable stopper on a kite bar trim line. STL files have been generated for
-[4mm\_amsteel\_blue\_trimline](printable/stopper_ball_4mm_amsteel_36bc488.stl) and
-[5mm\_amsteel\_blue\_trimline](printable/stopper_ball_modern_5mm_amsteel_36bc488.stl). The previous iteration of this ball was field tested and worked very well. This iteration removes a twist in the bungie path. To print it reliably, using a support structure that surrounds the base.
+[4mm\_amsteel\_blue\_trimline](printable/stopper_ball_4mm_amsteel.stl) and
+[5mm\_amsteel\_blue\_trimline](printable/stopper_ball_modern_5mm_amsteel.stl). The previous iteration of this ball was field tested and worked very well. This iteration removes a twist in the bungie path. To print it reliably, use a support structure that surrounds the base.
 
 ![](images/stopper_ball.png)
 
