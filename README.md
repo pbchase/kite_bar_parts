@@ -24,20 +24,6 @@ Most of these designs do not need supports. In some cases overhangs have been sp
 
 ## Tested models
 
-**Three part wichard snaphook** -  This design is uses six components to form a fid and a handle to actuate a wichard snaphook. The components are
-[wichard\_snaphook\_handle\_concave\_link](wichard_snaphook_handle_concave_link.scad),
-[wichard\_snaphook\_cone\_fid](wichard_snaphook_cone_fid.scad) and
-[wichard\_snaphook\_handle\_for\_cone\_fid](wichard_snaphook_handle_for_cone_fid.scad).  [STL files](printable/) are available for each.  A pair of each component is printed to out fit a single snaphook. This design accidentally released once in a 3 hour session. That's still too high.
-
-![](images/wichard_snaphook_cone_fid.png)
-![](images/wichard_snaphook_handle_concave_link.png)
-![](images/wichard_snaphook_handle_for_cone_fid.png)
-
-
-[wichard\_snaphook\_handle\_golf\_tee\_style](wichard_snaphook_handle_golf_tee_style.scad) - a cone-and-flange handle to open the gate of a Wichard Snap shackle. An [STL file](printable/wichard_snaphook_handle_golf_tee_style_8677c59.stl) is available. While this model reliably opens the gate and does so with little force it has opened unexpectedly in field testing. This happened three times in about 5 hours of testing. The problem occurs when the harness and the handles are forced down onto the pilot's thigh. Apprently, the base of the handle stands on the thigh as the snap hook is forced down against the thigh. This pulls the cord in the gate, pulls the opposite handle into the gate and triggers the release. See  _Untested Models_ below for the next iteration of the design.
-
-![](images/wichard_snaphook_handle_golf_tee_style.png)
-
 
 [stopper\_ball](stopper_ball.scad) - The ball used in a moveable stopper on a kite bar trim line. STL files have been generated for
 [4mm\_amsteel\_blue\_trimline](printable/stopper_ball_4mm_amsteel.stl) and
