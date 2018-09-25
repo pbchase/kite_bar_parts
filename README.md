@@ -1,6 +1,6 @@
 # 3D models of components for kite control bars
 
-This repository is a collection of 3D models for components that could be used in the construction of kite control bars. The models were created with OpenSCAD, a programming language and development environment for 3D modelling. Some of these modules are complete components that have been used in actual gear. Some are speculative designs. Other are primivites used as part of a complete component.
+This repository is a collection of 3D models for components that could be used in the construction of kite control bars. The models were created with OpenSCAD, a programming language and development environment for 3D modelling. Some of these modules are complete components that have been used in actual gear. Some are speculative designs. Other are primitives used as part of a complete component.
 
 ## How to view and manipulate these models
 
@@ -31,14 +31,14 @@ Most of these designs do not need supports. In some cases overhangs have been sp
 
 [stopper\_ball](stopper_ball.scad) - The ball used in a moveable stopper on a kite bar trim line. STL files have been generated for
 [4mm\_amsteel\_blue\_trimline](printable/stopper_ball_4mm_amsteel_36bc488.stl) and
-[5mm\_amsteel\_blue\_trimline](printable/stopper_ball_modern_5mm_amsteel_36bc488.stl). The previous iteration of this ball was field tested and worked very well. This iteration removes a twist in the bungie path. It should also print more reliably.
+[5mm\_amsteel\_blue\_trimline](printable/stopper_ball_modern_5mm_amsteel_36bc488.stl). The previous iteration of this ball was field tested and worked very well. This iteration removes a twist in the bungie path. To print it reliably, using a support structure that surrounds the base.
 
 ![](images/stopper_ball.png)
 
 
-[stopper\_block\_v4](stopper_block_v4.scad) - This block is used in tandem with the stopper ball to form a moveable stopper. STL files have been generated for
-[4mm\_amsteel\_blue\_trimline](printable/stopper_block_v4_4mm_amsteel_30c9f20.stl) and
-[5mm\_amsteel\_blue\_trimline](printable/stopper_block_v4_modern_5mm_amsteel_30c9f20.stl).
+[stopper\_block\_v4](stopper_block_v4.scad) - This block is used in tandem with the stopper ball to form a moveable stopper. A slightly earlier version of this design has been field tested. This version should be easier to print than the previous version. STL files have been generated for
+[4mm\_amsteel\_blue\_trimline](printable/stopper_block_v4_4mm_amsteel.stl) and
+[5mm\_amsteel\_blue\_trimline](printable/stopper_block_v4_modern_5mm_amsteel.stl).
 
 ![](images/stopper_block_v4.png)
 
