@@ -81,12 +81,12 @@ bore_diameter_for_5mm_ultrex = 7/32 * 25.4;
 trim_line_diameter=bore_diameter_for_modern_5mm_amsteel;
 trim_line_angle=12;
 
-// Define elliptical flange as a torus
+// Define flange as a torus
 flange_extension = 12;
 flange_thickness = 5;
-flange_major_radius = width_near_kite * 0.75;
 cross_sectional_r_in_plane = flange_extension/2;
 flange_minor_radius = bungie_path_width + thickness_of_main_body/2 - cross_sectional_r_in_plane * 0.5;
+flange_major_radius = flange_minor_radius;
 
 cross_sectional_r_out_of_plane = flange_thickness/2;
 flange_y_translation = overall_depth - cross_sectional_r_out_of_plane/2;
