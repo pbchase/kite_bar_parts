@@ -31,6 +31,9 @@ trim_line_diameter=bore_diameter_for_modern_5mm_amsteel;
 trimline_bore_r=trim_line_diameter/2;
 trimline_bore_length = 2 * ball_r+2;
 
+// Define dimensions of flag line path in terms of the trimline bore and the ball radius
+flag_line_width=2*trimline_bore_r;
+flag_line_path_radius=ball_r;
 
 // Define dimension of the flag line guide path
 a_axis = 1;
@@ -38,12 +41,33 @@ b_axis = 1;
 major_radius = 2;
 
 difference() {
-    union() {
-        half_squashed_sphere(ball_r, 0.75);
-        flag_line_guide();
+    spinner_ball_without_flag_line_path();
+    flag_line_path(width=flag_line_width,path_r=flag_line_path_radius);
+}
+
+module spinner_ball_without_flag_line_path() {
+   difference() {
+        union() {
+            half_squashed_sphere(ball_r, 0.75);
+            flag_line_guide();
+        }
+        #cleat_end();
+        #trimline_bore(trimline_bore_length, trimline_bore_r);
     }
-    #cleat_end();
-    #trimline_bore(trimline_bore_length, trimline_bore_r);
+}
+
+module flag_line_path(width,path_r) {
+    rotate([-90,0,90])
+        difference() {
+            translate([0.3*width,0,-0.1*width]){  // these offsets were determined through trial and error to resemble successful hand-carved pieces
+                union() { // make a shicane from three 1/4 tori
+                    rotate(a=[90,90,0]) quarter_torus(width, path_r);
+                    rotate([-90,0,0]) translate([2*path_r, 0, 0]) quarter_torus(width, path_r);
+                    rotate([-90,0,0]) translate([0, -2*path_r, 0]) quarter_torus(width, path_r);
+                }
+            }
+            translate([-path_r,0,0]) cube(2*path_r, center=true);
+        }
 }
 
 module trimline_bore(trimline_bore_length, trimline_bore_r) {
@@ -108,5 +132,19 @@ module hemisphere(radius) {
         sphere(radius);
         translate([-radius-1,0,-radius-1])
            cube(radius*2+2);
+    }
+}
+
+// Because my openscad is old I have to extrude 360 degrees of torus before pruning it back.
+module quarter_torus(width, path_r) {
+    difference() {
+        rotate_extrude()
+        translate([path_r, 0, 0])
+        circle(r = width/2, $fn = 30);
+        union() { // remove 3/4 of the torus
+            translate([path_r,path_r,0]) cube(2*path_r,center=true);
+            translate([-path_r,-path_r,0]) cube(2*path_r,center=true);
+            translate([path_r,-path_r,0]) cube(2*path_r,center=true);
+        }
     }
 }
