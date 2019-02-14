@@ -10,7 +10,7 @@
 */
 
 use <elliptical_torus.scad>;
-//$fn=16;
+$fn=50;
 
 // Define major dimension of ball
 ball_r = 26/2;
@@ -36,37 +36,41 @@ flag_line_width=2*trimline_bore_r;
 flag_line_path_radius=ball_r;
 
 // Define dimension of the flag line guide path
-a_axis = 1;
-b_axis = 1;
-major_radius = 2;
+a_axis = 2;
+b_axis = 4;
+major_radius = trimline_bore_r;
+
+// define cross sectional view parameters
+cross_section_edge = 100;
 
 difference() {
     spinner_ball_without_flag_line_path();
     flag_line_path(width=flag_line_width,path_r=flag_line_path_radius);
+    cross_section(cross_section_edge);
 }
 
 module spinner_ball_without_flag_line_path() {
    difference() {
         union() {
             half_squashed_sphere(ball_r, 0.75);
-            flag_line_guide();
+            flag_line_guide(a_axis, b_axis, major_radius);
         }
-        #cleat_end();
-        #trimline_bore(trimline_bore_length, trimline_bore_r);
+        cleat_end();
+        trimline_bore(trimline_bore_length, trimline_bore_r);
     }
+}
+
+module cross_section(cross_section_edge) {
+    translate([-cross_section_edge/2,-cross_section_edge/2,0]) cube(cross_section_edge);
 }
 
 module flag_line_path(width,path_r) {
     rotate([-90,0,90])
-        difference() {
-            translate([0.3*width,0,-0.1*width]){  // these offsets were determined through trial and error to resemble successful hand-carved pieces
-                union() { // make a shicane from three 1/4 tori
-                    rotate(a=[90,90,0]) quarter_torus(width, path_r);
-                    rotate([-90,0,0]) translate([2*path_r, 0, 0]) quarter_torus(width, path_r);
-                    rotate([-90,0,0]) translate([0, -2*path_r, 0]) quarter_torus(width, path_r);
-                }
+        translate([0.3*width,0,-0.1*width]){  // these offsets were determined through trial and error to resemble successful hand-carved pieces
+            union() { // make a shicane from three 1/4 tori
+                rotate(a=[90,90,0]) quarter_torus(width, path_r);
+                rotate([-90,0,0]) translate([0, -2*path_r, 0]) partial_torus(width, path_r);
             }
-            translate([-path_r,0,0]) cube(2*path_r, center=true);
         }
 }
 
@@ -75,8 +79,8 @@ module trimline_bore(trimline_bore_length, trimline_bore_r) {
         cylinder(h=trimline_bore_length,r=trimline_bore_r,center=true);
 }
 
-module flag_line_guide() {
-translate([-1 * ball_r,0,0])
+module flag_line_guide(a_axis, b_axis, major_radius) {
+translate([-1 * ball_r,-0.3*b_axis,0])
     rotate([90,0,0])
         elliptical_torus(a_axis, b_axis, major_radius);
 }
@@ -143,6 +147,22 @@ module quarter_torus(width, path_r) {
         circle(r = width/2, $fn = 30);
         union() { // remove 3/4 of the torus
             translate([path_r,path_r,0]) cube(2*path_r,center=true);
+            translate([-path_r,-path_r,0]) cube(2*path_r,center=true);
+            translate([path_r,-path_r,0]) cube(2*path_r,center=true);
+        }
+    }
+}
+
+module partial_torus(width, path_r) {
+    difference() {
+        rotate_extrude()
+        translate([path_r, 0, 0])
+        circle(r = width/2, $fn = 30);
+        union() { // remove 3/4 of the torus
+            translate([0,0,-1*width]) cylinder(h=width*2, r=path_r-1)
+            translate([path_r,path_r,0]) cube(2*path_r,center=true);
+            rotate([0,0,-58])
+                translate([-path_r,-path_r,0]) cube(2*path_r,center=true);
             translate([-path_r,-path_r,0]) cube(2*path_r,center=true);
             translate([path_r,-path_r,0]) cube(2*path_r,center=true);
         }
