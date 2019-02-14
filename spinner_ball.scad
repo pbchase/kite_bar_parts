@@ -10,7 +10,7 @@
 */
 
 use <elliptical_torus.scad>;
-$fn=50;
+$fn=30;
 
 // Define major dimension of ball
 ball_r = 26/2;
@@ -43,11 +43,13 @@ major_radius = trimline_bore_r;
 // define cross sectional view parameters
 cross_section_edge = 100;
 
-difference() {
-    spinner_ball_without_flag_line_path();
-    flag_line_path(width=flag_line_width,path_r=flag_line_path_radius);
-    //cross_section(cross_section_edge);
-}
+// Rotate the kite side down for easier printing
+rotate([90,0,0])
+    difference() {
+        spinner_ball_without_flag_line_path();
+        flag_line_path(width=flag_line_width,path_r=flag_line_path_radius);
+        //cross_section(cross_section_edge);
+    }
 
 module spinner_ball_without_flag_line_path() {
    difference() {
