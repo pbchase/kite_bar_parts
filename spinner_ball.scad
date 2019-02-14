@@ -46,7 +46,7 @@ cross_section_edge = 100;
 difference() {
     spinner_ball_without_flag_line_path();
     flag_line_path(width=flag_line_width,path_r=flag_line_path_radius);
-    cross_section(cross_section_edge);
+    //cross_section(cross_section_edge);
 }
 
 module spinner_ball_without_flag_line_path() {
