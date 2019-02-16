@@ -14,6 +14,7 @@ $fn=30;
 
 // Define major dimension of ball
 ball_r = 26/2;
+hemisphere_squash_ratio = 0.75;
 
 // Define dimension of large center bore for the pair of trim lines
 // The line diameters here have all been tested using a wrap of insignia cloth
@@ -34,11 +35,10 @@ trimline_bore_length = 2 * ball_r+2;
 // Define dimensions of flag line path in terms of the trimline bore and the ball radius
 flag_line_width=2*trimline_bore_r;
 flag_line_path_radius=ball_r;
+flag_line_guide_radius=trimline_bore_r+2;
 
 // Define dimension of the flag line guide path
-a_axis = 2;
-b_axis = 4;
-major_radius = trimline_bore_r;
+flag_line_path_straight_segment_length = 10;
 
 // define cross sectional view parameters
 cross_section_edge = 100;
@@ -47,32 +47,32 @@ cross_section_edge = 100;
 rotate([90,0,0])
     difference() {
         cleat_bead_without_flag_line_path();
-        flag_line_path(width=flag_line_width,path_r=flag_line_path_radius);
+        flag_line_path(flag_line_width, flag_line_path_radius,flag_line_path_straight_segment_length);
         //cross_section(cross_section_edge);
     }
 
 module cleat_bead_without_flag_line_path() {
    difference() {
-        union() {
-            half_squashed_sphere(ball_r, 0.75);
-            flag_line_guide(a_axis, b_axis, major_radius);
+        hull() {
+            half_squashed_sphere(ball_r, hemisphere_squash_ratio);
+            flag_line_guide(flag_line_guide_radius, ball_r);
         }
-        cleat_end();
+        #cleat_end();
         trimline_bore(trimline_bore_length, trimline_bore_r);
     }
 }
 
 module cross_section(cross_section_edge) {
-    translate([-cross_section_edge/2,-cross_section_edge/2,0]) cube(cross_section_edge);
+    rotate([0,-45,0])
+        translate([-cross_section_edge/2,-cross_section_edge/2,0])
+            cube(cross_section_edge);
 }
 
-module flag_line_path(width,path_r) {
-    rotate([-90,0,90])
-        translate([0.3*width,0,-0.1*width]){  // these offsets were determined through trial and error to resemble successful hand-carved pieces
-            union() { // make a shicane from three 1/4 tori
+module flag_line_path(width,path_r,flag_line_path_straight_segment_length) {
+    rotate([-90,135,0])
+        union() { // make a cylinder with a 1/4 torus end
                 rotate(a=[90,90,0]) quarter_torus(width, path_r);
-                rotate([-90,0,0]) translate([0, -2*path_r, 0]) partial_torus(width, path_r);
-            }
+                #translate([path_r, 0, -0.5*flag_line_path_straight_segment_length])   cylinder(h=flag_line_path_straight_segment_length, r=width/2, center=true);
         }
 }
 
@@ -81,10 +81,10 @@ module trimline_bore(trimline_bore_length, trimline_bore_r) {
         cylinder(h=trimline_bore_length,r=trimline_bore_r,center=true);
 }
 
-module flag_line_guide(a_axis, b_axis, major_radius) {
-translate([-1 * ball_r,-0.3*b_axis,0])
-    rotate([90,0,0])
-        elliptical_torus(a_axis, b_axis, major_radius);
+module flag_line_guide(radius, ball_r) {
+    rotate([0,45,0])
+        translate([0,-hemisphere_squash_ratio*ball_r+radius,-ball_r])
+            sphere(radius);
 }
 
 module cleat_end() {
@@ -149,22 +149,6 @@ module quarter_torus(width, path_r) {
         circle(r = width/2, $fn = 30);
         union() { // remove 3/4 of the torus
             translate([path_r,path_r,0]) cube(2*path_r,center=true);
-            translate([-path_r,-path_r,0]) cube(2*path_r,center=true);
-            translate([path_r,-path_r,0]) cube(2*path_r,center=true);
-        }
-    }
-}
-
-module partial_torus(width, path_r) {
-    difference() {
-        rotate_extrude()
-        translate([path_r, 0, 0])
-        circle(r = width/2, $fn = 30);
-        union() { // remove 3/4 of the torus
-            translate([0,0,-1*width]) cylinder(h=width*2, r=path_r-1)
-            translate([path_r,path_r,0]) cube(2*path_r,center=true);
-            rotate([0,0,-58])
-                translate([-path_r,-path_r,0]) cube(2*path_r,center=true);
             translate([-path_r,-path_r,0]) cube(2*path_r,center=true);
             translate([path_r,-path_r,0]) cube(2*path_r,center=true);
         }
