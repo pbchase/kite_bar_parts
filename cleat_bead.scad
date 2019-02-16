@@ -102,14 +102,14 @@ module cleat_end() {
   // Align the cleat with the x, y, and z axes
   translate([4,34.3,-1])
     rotate([-1,-22,-2])
-      import( "/Users/pbchase/git/github/kite_bar_parts/CL826-11AN_20190212_truncated_and_hulled.stl");
+      import( "CL826-11AN_20190212_truncated_and_hulled.stl");
 }
 
 module cleat() {
   // Align the cleat with the x, y, and z axes
   translate([4,34.3,-1])
     rotate([-1,-22,-2])
-      import( "/Users/pbchase/git/github/kite_bar_parts/CL826-11AN_20190212_partially_truncated.stl");
+      import( "CL826-11AN_20190212_partially_truncated.stl");
 }
 
 module half_cube_minus_cylinder(r) {
