@@ -28,18 +28,18 @@ bore_diameter_for_4mm_amsteel = 1/4 * 25.4;
 bore_diameter_for_old_5mm_amsteel = 5/16 * 25.4;
 bore_diameter_for_modern_5mm_amsteel = 3/8 * 25.4;
 bore_diameter_for_5mm_ultrex = 3/8 * 25.4;
-trim_line_diameter=bore_diameter_for_modern_5mm_amsteel;
+trim_line_diameter=bore_diameter_for_old_5mm_amsteel;
 
 trimline_bore_r=trim_line_diameter/2;
 trimline_bore_length = 2 * ball_r+2;
 
 // Define dimensions of flag line path in terms of the trimline bore and the ball radius
 flag_line_width=2*trimline_bore_r;
-flag_line_path_radius=ball_r;
+flag_line_path_radius=ball_r+0.75;
 flag_line_guide_radius=trimline_bore_r+2;
 
 // Define dimension of the flag line guide path
-flag_line_path_straight_segment_length = 10;
+flag_line_path_straight_segment_length = 10.8;
 
 // define cross sectional view parameters
 cross_section_edge = 100;
@@ -56,7 +56,7 @@ module cleat_bead_without_flag_line_path() {
    difference() {
         hull() {
             half_squashed_sphere(ball_r, hemisphere_squash_ratio);
-            flag_line_guide(flag_line_guide_radius, ball_r);
+            flag_line_guide(flag_line_guide_radius, flag_line_path_radius, ball_r);
             cleat_end_slice();
        }
        cleat_end();
@@ -90,18 +90,18 @@ module flag_line_path(width,path_r,flag_line_path_straight_segment_length) {
         }
 }
 
-module flag_line_guide(radius, ball_r) {
+module flag_line_guide(radius, flag_line_path_radius, ball_r) {
     torus_minor_r=1;
     rotate([0,45,0]) {
         // shape the front with a half-sphere
-        translate([0,-hemisphere_squash_ratio*ball_r + radius - 5,-ball_r])
+        translate([0,-hemisphere_squash_ratio*ball_r + radius - 3.5,-flag_line_path_radius])
             difference() {
                 sphere(radius);
                 rotate([90,0,0])
                     cylinder(h=radius, r=radius);
             }
         // Place a torus at the back face.
-        translate([0,-hemisphere_squash_ratio*ball_r + radius - 6 ,-ball_r])
+        translate([0,-hemisphere_squash_ratio*ball_r + radius - 5.5 ,-flag_line_path_radius])
             rotate([90,0,0])
                 elliptical_torus(torus_minor_r, torus_minor_r, radius - 2*torus_minor_r);
     }
@@ -118,12 +118,13 @@ module cleat_end_slice() {
             cleat_end();
             translate([0,-9,0]) cube([20,1,20], center=true);
         }
-        rotate([90,0,0]) cylinder(h=1, r=1.5, center=true);
+        rotate([90,0,0]) cylinder(h=1, r=2, center=true);
     }
 }
 
 module cleat_end() {
   // Align the cleat with the x, y, and z axes
+  translate([0,8,0])
   union() {
       translate([4,34.3,-1])
         rotate([-1,-22,-2])
