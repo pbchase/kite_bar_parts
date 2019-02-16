@@ -1,10 +1,10 @@
-// 3D model for a spinner ball for a kite-bar control system
+// 3D model for a cleat bead for a kite-bar control system
 // See http://philipbchase.com/
 // Make one per kite bar
 // Author: Philip B Chase, <philipbchase@gmail.com>
-/* This design is meant to mate on to the pilot-end of Clamcleat® CL826-11. It fits tightly onto the end with a positive rotational lock. The spherical shape conforms t the circular hole in the kite-side of the bar and allows for easy bar spinning.  The rotational lock allows for a flag-line guide path to be reliably located opposite the cleat to reduce the risk of cleating the flag line. 
+/* This design is meant to mate on to the pilot-end of Clamcleat® CL826-11. It fits tightly onto the end with a positive rotational lock. The spherical shape conforms t the circular hole in the kite-side of the bar and allows for easy bar spinning.  The rotational lock allows for a flag-line guide path to be reliably located opposite the cleat to reduce the risk of cleating the flag line.
 */
-/* License: To the extent possible under law, Philip B Chase has waived all copyright and related or neighboring rights to 3D model for a spinner ball for a kite-bar control system. This work is published from: United States.  See: http://creativecommons.org/publicdomain/zero/1.0/
+/* License: To the extent possible under law, Philip B Chase has waived all copyright and related or neighboring rights to 3D model for a cleat bead for a kite-bar control system. This work is published from: United States.  See: http://creativecommons.org/publicdomain/zero/1.0/
 
     Scans of the Clamcleat CL826-11AN are copyright Clamcleats Limited, UK
 */
@@ -46,12 +46,12 @@ cross_section_edge = 100;
 // Rotate the kite side down for easier printing
 rotate([90,0,0])
     difference() {
-        spinner_ball_without_flag_line_path();
+        cleat_bead_without_flag_line_path();
         flag_line_path(width=flag_line_width,path_r=flag_line_path_radius);
         //cross_section(cross_section_edge);
     }
 
-module spinner_ball_without_flag_line_path() {
+module cleat_bead_without_flag_line_path() {
    difference() {
         union() {
             half_squashed_sphere(ball_r, 0.75);
@@ -91,14 +91,14 @@ module cleat_end() {
   // Align the cleat with the x, y, and z axes
   translate([4,34.3,-1])
     rotate([-1,-22,-2])
-      import( "/Users/pbchase/git/github/kite_bar_parts/CL826-11AN_20190212_truncated_and_hulled.stl"); 
+      import( "/Users/pbchase/git/github/kite_bar_parts/CL826-11AN_20190212_truncated_and_hulled.stl");
 }
 
 module cleat() {
   // Align the cleat with the x, y, and z axes
   translate([4,34.3,-1])
     rotate([-1,-22,-2])
-      import( "/Users/pbchase/git/github/kite_bar_parts/CL826-11AN_20190212_partially_truncated.stl"); 
+      import( "/Users/pbchase/git/github/kite_bar_parts/CL826-11AN_20190212_partially_truncated.stl");
 }
 
 module half_cube_minus_cylinder(r) {
