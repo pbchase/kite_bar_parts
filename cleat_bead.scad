@@ -10,6 +10,7 @@
 */
 
 use <elliptical_torus.scad>;
+use <fillet_around_cylinder_base.scad>;
 $fn=30;
 
 // Define major dimension of ball
@@ -72,19 +73,29 @@ module flag_line_path(width,path_r,flag_line_path_straight_segment_length) {
     rotate([-90,135,0])
         union() { // make a cylinder with a 1/4 torus end
                 rotate(a=[90,90,0]) quarter_torus(width, path_r);
-                #translate([path_r, 0, -0.5*flag_line_path_straight_segment_length])   cylinder(h=flag_line_path_straight_segment_length, r=width/2, center=true);
+                translate([path_r, 0, -0.5*flag_line_path_straight_segment_length])
+                    #union() {
+                        cylinder(h=flag_line_path_straight_segment_length, r=width/2, center=true);
+                        translate([0,0,-0.5*flag_line_path_straight_segment_length])
+                            fillet_around_cylinder_base(width/2, 1, true);
+                    }
+        }
+}
+
+module flag_line_guide(radius, ball_r) {
+    torus_minor_r=1;
+    rotate([0,45,0])
+        translate([0,-hemisphere_squash_ratio*ball_r+radius,-ball_r]) {
+            sphere(radius);
+            translate([0,-6,0])
+                rotate([90,0,0])
+                elliptical_torus(torus_minor_r, torus_minor_r, radius - 2*torus_minor_r);
         }
 }
 
 module trimline_bore(trimline_bore_length, trimline_bore_r) {
     rotate([90,0,0])
         cylinder(h=trimline_bore_length,r=trimline_bore_r,center=true);
-}
-
-module flag_line_guide(radius, ball_r) {
-    rotate([0,45,0])
-        translate([0,-hemisphere_squash_ratio*ball_r+radius,-ball_r])
-            sphere(radius);
 }
 
 module cleat_end() {
