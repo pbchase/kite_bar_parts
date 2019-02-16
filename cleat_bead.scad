@@ -114,9 +114,12 @@ module trimline_bore(trimline_bore_length, trimline_bore_r) {
 }
 
 module cleat_end_slice() {
-    intersection() {
-        cleat_end();
-        translate([0,-9.5,0]) cube([20,1,20], center=true);
+    minkowski() {
+        intersection() {
+            cleat_end();
+            translate([0,-9,0]) cube([20,1,20], center=true);
+        }
+        rotate([90,0,0]) cylinder(h=1, r=1.5, center=true);
     }
 }
 
