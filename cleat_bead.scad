@@ -87,13 +87,19 @@ module flag_line_path(width,path_r,flag_line_path_straight_segment_length) {
 
 module flag_line_guide(radius, ball_r) {
     torus_minor_r=1;
-    rotate([0,45,0])
-        translate([0,-hemisphere_squash_ratio*ball_r+radius,-ball_r]) {
-            sphere(radius);
-            translate([0,-6,0])
+    rotate([0,45,0]) {
+        // shape the front with a half-sphere
+        translate([0,-hemisphere_squash_ratio*ball_r + radius - 5,-ball_r])
+            difference() {
+                sphere(radius);
                 rotate([90,0,0])
+                    cylinder(h=radius, r=radius);
+            }
+        // Place a torus at the back face.
+        translate([0,-hemisphere_squash_ratio*ball_r + radius - 6 ,-ball_r])
+            rotate([90,0,0])
                 elliptical_torus(torus_minor_r, torus_minor_r, radius - 2*torus_minor_r);
-        }
+    }
 }
 
 module trimline_bore(trimline_bore_length, trimline_bore_r) {
