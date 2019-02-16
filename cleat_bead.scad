@@ -11,7 +11,7 @@
 
 use <elliptical_torus.scad>;
 use <fillet_around_cylinder_base.scad>;
-$fn=30;
+$fn=40;
 
 // Define major dimension of ball
 ball_r = 26/2;
@@ -74,9 +74,9 @@ module flag_line_path(width,path_r,flag_line_path_straight_segment_length) {
         union() { // make a cylinder with a 1/4 torus end
                 rotate(a=[90,90,0]) quarter_torus(width, path_r);
                 translate([path_r, 0, -0.5*flag_line_path_straight_segment_length])
-                    #union() {
-                        cylinder(h=flag_line_path_straight_segment_length, r=width/2, center=true);
-                        translate([0,0,-0.5*flag_line_path_straight_segment_length])
+                    union() {
+                        cylinder(h=1.0004 * flag_line_path_straight_segment_length, r=width/2, center=true);
+                        translate([0,0,-0.5002*flag_line_path_straight_segment_length])
                             fillet_around_cylinder_base(width/2, 1, true);
                     }
         }
