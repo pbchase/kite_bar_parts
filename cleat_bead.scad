@@ -59,11 +59,17 @@ module cleat_bead_without_flag_line_path() {
             flag_line_guide(flag_line_guide_radius, ball_r);
             cleat_end_slice();
        }
-        cleat_end();
-       //uncomment the next line to carve some volume out of the bead for the rope on the right hand side
-        //#translate([9,-13,0]) rotate([90,0,0]) cylinder(h=12, r=5, center=true);
-        trimline_bore(trimline_bore_length, trimline_bore_r);
+       cleat_end();
+       rope_volume_on_right_side_of_cleat();
+       trimline_bore(trimline_bore_length, trimline_bore_r);
     }
+}
+
+module rope_volume_on_right_side_of_cleat() {
+    translate([-3,-21,6.5])
+        rotate([1,-5,-17])
+            scale([6.5,16,5])
+                sphere(r=1);
 }
 
 module cross_section(cross_section_edge) {
