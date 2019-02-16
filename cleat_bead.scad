@@ -60,7 +60,6 @@ module cleat_bead_without_flag_line_path() {
             cleat_end_slice();
        }
        cleat_end();
-       rope_volume_on_right_side_of_cleat();
        trimline_bore(trimline_bore_length, trimline_bore_r);
     }
 }
@@ -125,9 +124,12 @@ module cleat_end_slice() {
 
 module cleat_end() {
   // Align the cleat with the x, y, and z axes
-  translate([4,34.3,-1])
-    rotate([-1,-22,-2])
-      import( "CL826-11AN_20190212_truncated_and_hulled.stl");
+  union() {
+      translate([4,34.3,-1])
+        rotate([-1,-22,-2])
+          import( "CL826-11AN_20190212_truncated_and_hulled.stl");
+      rope_volume_on_right_side_of_cleat();
+  }
 }
 
 module cleat() {
