@@ -57,8 +57,11 @@ module cleat_bead_without_flag_line_path() {
         hull() {
             half_squashed_sphere(ball_r, hemisphere_squash_ratio);
             flag_line_guide(flag_line_guide_radius, ball_r);
-        }
-        #cleat_end();
+            cleat_end_slice();
+       }
+        cleat_end();
+       //uncomment the next line to carve some volume out of the bead for the rope on the right hand side
+        //#translate([9,-13,0]) rotate([90,0,0]) cylinder(h=12, r=5, center=true);
         trimline_bore(trimline_bore_length, trimline_bore_r);
     }
 }
@@ -96,6 +99,13 @@ module flag_line_guide(radius, ball_r) {
 module trimline_bore(trimline_bore_length, trimline_bore_r) {
     rotate([90,0,0])
         cylinder(h=trimline_bore_length,r=trimline_bore_r,center=true);
+}
+
+module cleat_end_slice() {
+    intersection() {
+        cleat_end();
+        translate([0,-9.5,0]) cube([20,1,20], center=true);
+    }
 }
 
 module cleat_end() {
