@@ -17,6 +17,7 @@ $fn=40;
 ball_r = 27/2;
 hemisphere_squash_ratio = 0.75;
 bead_center_to_back_face = -14;
+edge_radius = 1;
 
 // Define dimension of large center bore for the pair of trim lines
 // The line diameters here have all been tested using a wrap of insignia cloth
@@ -63,6 +64,7 @@ module cleat_bead_without_flag_line_path() {
                 ball_r, 
                 bead_center_to_back_face);
             cleat_end_slice(bead_center_to_back_face);
+            expand_back_face(edge_radius, bead_center_to_back_face);
        }
        cleat_end();
        trimline_bore(trimline_bore_length, trimline_bore_r);
@@ -80,6 +82,12 @@ module cross_section(cross_section_edge) {
     rotate([0,-45,0])
         translate([-cross_section_edge/2,-cross_section_edge/2,0])
             cube(cross_section_edge);
+}
+
+module expand_back_face(edge_radius, bead_center_to_back_face) {
+    y_disp = bead_center_to_back_face + edge_radius;
+    translate([-6.6,y_disp,1.6]) rotate([90,0,0]) elliptical_torus(edge_radius, edge_radius, 5.2);
+    translate([-2.0,y_disp,3.5]) rotate([90,0,0]) elliptical_torus(edge_radius, edge_radius, 7.4);
 }
 
 module flag_line_path(width,path_r,flag_line_path_straight_segment_length) {
