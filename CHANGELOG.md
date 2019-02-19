@@ -3,6 +3,12 @@ All notable changes to the Kite Bar Parts project will be documented in this fil
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [1.4.1] - 2019-02-19
+### Changed
+- Realign the flag line path with the sphere surface and campher the trimline_bore in cleat_bead (Philip Chase)
+- Expand back face of cleat bead to have 1mm thick, radiused edges (Philip Chase)
+- Make the cleat_bead taller, add a radius to the base, widen flag_line_path, use true sphere for bead body (Philip Chase)
+
 ## [1.4.0] - 2019-02-16
 ### Added
 - Add cleat_bead, an interface between the cleat, bar and flag line to substitute for a moveable stopper [Philip Chase]
