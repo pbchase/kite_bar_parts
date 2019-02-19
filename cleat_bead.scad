@@ -34,6 +34,8 @@ trim_line_diameter=bore_diameter_for_old_5mm_amsteel;
 
 trimline_bore_r=trim_line_diameter/2;
 trimline_bore_length = 2 * ball_r+2;
+bore_campher_radius = 4.0;
+bore_campher_height = 3;
 
 // Define dimensions of flag line path in terms of the trimline bore and the ball radius
 flag_line_width=bore_diameter_for_modern_5mm_amsteel;
@@ -41,7 +43,7 @@ flag_line_path_radius=ball_r;
 flag_line_guide_radius=flag_line_width/2 + 2;
 
 // Define dimension of the flag line guide path
-flag_line_path_straight_segment_length = -bead_center_to_back_face + 1.7;
+flag_line_path_straight_segment_length = -bead_center_to_back_face;
 
 // define cross sectional view parameters
 cross_section_edge = 100;
@@ -51,6 +53,7 @@ rotate([90,0,0])
     difference() {
         cleat_bead_without_flag_line_path();
         flag_line_path(flag_line_width, flag_line_path_radius,flag_line_path_straight_segment_length);
+        campher_trimline_bore(ball_r, trimline_bore_r, bore_campher_radius, bore_campher_height);
         //cross_section(cross_section_edge);
         //#cleat();
     }
@@ -78,6 +81,16 @@ module rope_volume_on_right_side_of_cleat() {
                 sphere(r=1);
 }
 
+module campher_trimline_bore(ball_r, trimline_bore_r, bore_campher_radius, bore_campher_height) {
+    translate([0,ball_r-bore_campher_radius + 4.6,0])
+        rotate([90,0,0])
+            union() {
+                fillet_around_cylinder_base(trimline_bore_r, bore_campher_radius, true);
+                translate([0,0,-1.5])
+                    cylinder(h=bore_campher_height, r=trimline_bore_r+bore_campher_radius, center=true);
+            }
+}
+
 module cross_section(cross_section_edge) {
     rotate([0,-45,0])
         translate([-cross_section_edge/2,-cross_section_edge/2,0])
@@ -91,7 +104,7 @@ module expand_back_face(edge_radius, bead_center_to_back_face) {
 }
 
 module flag_line_path(width,path_r,flag_line_path_straight_segment_length) {
-    translate([0,1.7,0])
+    translate([0,0,0])
     rotate([-90,135,0])
         union() { // make a cylinder with a 1/4 torus end
                 rotate(a=[90,90,0]) quarter_torus(width, path_r);
