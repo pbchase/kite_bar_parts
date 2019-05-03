@@ -44,17 +44,17 @@ Most of these designs do not need supports. In some cases overhangs have been sp
 ![](images/separation_block_v1.png)
 
 
+[cleat_bead](cleat_bead.scad) - This component is meant to mate on to the pilot-end of [Clamcleat® CL826-11](https://www.clamcleat.com/aero-cleat-with-cl211-mk2.html). It fits tightly onto the end of the cleat with a positive rotational lock. The spherical shape conforms to the circular hole in the kite-side of the bar and allows for easy bar spinning.  The rotational lock allows for a flag-line guide path to be routed away from the jaws of the cleat to reduce the risk of cleating the flag line. STL files have been generated for [5mm](printable/cleat_bead_ff7e41a.stl) trim lines.
+
+![](images/cleat_bead.png)
+
+
 ### Untested models
 
 [separation\_block_v2](separation_block_v2.scad) - This component transfers load from the main flying lines by providing a pair of parallel bore holes. Each flying line passes through a bore hole. The flying line is trapped on the lower side of the block via a larks head of relatively fat line. The pair of bore holes surround a larger, toroidal central bore hole. The curved central bore provides a low friction path for the trim line. STL files have been generated for [5mm](printable/separation_block_v2_5mm_trimline_976518e.stl) and [6mm](printable/separation_block_v2_6mm_trimline_283f6bb.stl) trim lines. This design is untested.
 
 
 ![](images/separation_block_v2.png)
-
-[cleat_bead](cleat_bead.scad) - This component is meant to mate on to the pilot-end of [Clamcleat® CL826-11](https://www.clamcleat.com/aero-cleat-with-cl211-mk2.html). It fits tightly onto the end of the cleat with a positive rotational lock. The spherical shape conforms to the circular hole in the kite-side of the bar and allows for easy bar spinning.  The rotational lock allows for a flag-line guide path to be routed away from the jaws of the cleat to reduce the risk of cleating the flag line. STL files have been generated for [5mm](printable/cleat_bead_ff7e41a.stl) and trim lines. This design is untested.
-
-![](images/cleat_bead.png)
-
 
 Several [deprecated designs](deprecated.md) and [primitives](primitives.md) used in many of these designs are also available in this repo.
 
