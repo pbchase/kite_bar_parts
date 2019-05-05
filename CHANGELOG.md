@@ -3,6 +3,12 @@ All notable changes to the Kite Bar Parts project will be documented in this fil
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [1.4.2] - 2019-05-05
+### Changed
+- Promote the cleat bead to a tested model (Philip Chase)
+- Update cleat_bead and separation_block_v1 STLs to 80 facets (Philip Chase)
+
+
 ## [1.4.1] - 2019-02-19
 ### Changed
 - Realign the flag line path with the sphere surface and campher the trimline_bore in cleat_bead (Philip Chase)
