@@ -1,7 +1,7 @@
 // 3D model for a separation block for a kite-bar control system
 // The separation block defines the interface of the flying lines
 // with the trimline and the flag line. This model requires no 
-// additional parts to be complete. The trim threads directly 
+// additional parts to be complete. The trimline threads directly 
 // through the central, curving path.
 // See http://philipbchase.com/moveable-stoppers/
 // Make one per kite bar
@@ -18,29 +18,31 @@ use <rounded_cylinder.scad>;
 
 $fn=30;
 
+// Uncomment these line to see a comparison with separation_block_v1
+//translate([0,20,0])
+//import("/Users/pbchase/git/github/kite_bar_parts/separation_block_v1.stl");
+
 // Body dimensions
-overall_width=26;  // x
+overall_width=20;  // x
 // overall_depth, the y-axis dimension, is a product of the trim_line bore dimensions
-overall_height=30; // z
+overall_height=27; // z
 // radii of block corners and edges
 r_body = 3;
 
 // Dimensions of main line bore
 main_line_bore_radius = 0.125 * 25.4 / 2;
 main_line_bore_length = overall_height + 2;
-main_line_bore_x_offset = overall_width/3.4;
+main_line_bore_x_offset = overall_width/3.6;
 echo("main_line_bore_x_offset", main_line_bore_x_offset);
 // Dimensions of trim line bore
 // The central bore is a half torus with a minor diameter large 
-// enough to accommodate a 5mm line. Larger, more comfortable trim 
+// enough to accommodate a 4mm line. Larger, more comfortable trim
 // lines would require a larger bore diameter.
 // 
-trim_line_bore_oversize_factor = 1.10;
 trim_line_diameter = 6;
-trim_line_bore_minor_radius = trim_line_diameter * trim_line_bore_oversize_factor / 2;
-trim_line_bore_major_radius = 2.4 * trim_line_diameter / 2;
-trim_line_bore_major_radius = 4 * trim_line_diameter / 2;
-trim_line_bore_translation = -1 * (trim_line_bore_major_radius);
+trim_line_bore_minor_radius = trim_line_diameter / 2;
+trim_line_bore_major_radius = overall_width / 2;
+trim_line_bore_translation = -4;
 
 overall_depth= 2 * (trim_line_bore_major_radius - trim_line_bore_minor_radius);  // y
 echo ("overall_depth",overall_depth);
@@ -52,6 +54,9 @@ difference() {
     trim_line_bore(trim_line_bore_major_radius, trim_line_bore_minor_radius, trim_line_bore_translation);
     flying_line_bore(main_line_bore_radius, main_line_bore_length, main_line_bore_x_offset);
     flying_line_bore(main_line_bore_radius, main_line_bore_length, -main_line_bore_x_offset);
+    // uncomment these lines to see a cut-away of the interior bores
+    //translate([-overall_height,-overall_height,0])
+    //    cube([overall_height,overall_height,overall_height]);
 }
 
 
