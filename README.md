@@ -37,6 +37,8 @@ Most of these designs do not need supports. In some cases overhangs have been sp
 
 I've resisted the use of chickenloops for quite sometime, but every snap shackle I have tried presents issues in reliable use for newbies, or inadvertent release for experienced fliers. It's hard to beat the simplicity of a chickenloop with a push-away release. [chickenloop_release](chickenloop_release.scad), is the model for that release. The release doubles as a below-the-bar handle for the kite. As an Arc flier this is valuable feature for handling the kite while it's parked at zenith. The release is designed to accommodate a doubled trimline of 4mm Amsteel Blue through the center bore. A 0.102" stainless steel pin crosses and divides the center bore to provide a retainer for the trimline. The prototypes for this model use a 40mm stainless steel cotter pin to retain the free end of the chickenloop. The side bores retain a segment of 1/8" bungie that pushes the chickenloop and cotter pin together. A 90-facet-count [STL file](printable/chickenloop_release_d1928a2.stl) is available.
 
+![](images/chickenloop_release.png)
+
 
 ## Older models
 
