@@ -3,6 +3,18 @@ All notable changes to the Kite Bar Parts project will be documented in this fil
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [1.5.0] - 2020-09-07
+### Added
+- Add chickenloop_release.scad and rounded_cylinder_2 (Philip Chase)
+- Add first version of cleat jacket template (Philip Chase)
+
+### Changed
+- Promote separation_block_v2 to a tested model (Philip Chase)
+- Move models in phase out into 'Older models' section  (Philip Chase)
+- Update separation_block_v2 STL and README reference (Philip Chase)
+- Resize body and trimline bore of separation_block_v2 (Philip Chase
+
+
 ## [1.4.2] - 2019-05-05
 ### Changed
 - Promote the cleat bead to a tested model (Philip Chase)
