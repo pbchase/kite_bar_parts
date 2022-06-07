@@ -49,6 +49,33 @@ module rounded_cylinder_2(height, cylinder_major_radius, torus_minor_radius) {
     }
 }
 
+module half_rounded_cylinder(height, cylinder_major_radius, torus_minor_radius) {
+    // height is the total height of the cylinder
+    // cylinder_major_radius is the overall radius of the cylinder--not the torus
+    // minor_radius is the radius of curvature of the rounded edges
+    // Constraints
+    //   height >= torus_minor_radius
+    //   cylinder_major_radius > 2 * torus_minor_radius
+    // The cylinder is centered at [0,0,0]
+    
+    torus_displacement = 0.5 * height - torus_minor_radius;
+    cylinder_height = 0.001*torus_minor_radius;
+    cylinder_displacement = - 0.5 * height + 0.5 * cylinder_height;
+    torus_major_radius = cylinder_major_radius - torus_minor_radius;
+
+    hull(){
+        difference() {
+            translate([0,0,torus_displacement])
+            torus(torus_major_radius, torus_minor_radius);
+            translate([0,0,torus_displacement - 0.5 * torus_minor_radius])
+                cylinder(h=torus_minor_radius, r=cylinder_major_radius, center=true);
+        }
+        translate([0,0,cylinder_displacement])
+            cylinder(h=cylinder_height, r=cylinder_major_radius, center=true);
+    }
+}
+
+
 module rounded_disc(major_radius, minor_radius) {
     // the disc is centered at [0,0,0]
     hull() {
