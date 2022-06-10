@@ -12,7 +12,7 @@
 
 use <rounded_cylinder.scad>;
 
-$fn=30;
+$fn=60;
 
 // Body dimensions
 id_od_interference = 0.15;
@@ -64,7 +64,7 @@ module cross_bore(cross_bore_torus_major_radius, cross_bore_radius, cross_bore_z
 module cap(cap_overall_height, cap_major_radius, cap_radius_of_edges, overall_height) {
     translate([0,0,-0.5 * overall_height - 0.5 * cap_overall_height])
         rotate([180,0,0])
-            %half_rounded_cylinder(cap_overall_height, cap_major_radius, cap_radius_of_edges);
+            half_rounded_cylinder(cap_overall_height, cap_major_radius, cap_radius_of_edges);
 }
 
 module interior_bevel(bevel_size_x, bevel_size_y, bevel_size_z, bevel_z_offset, bevel_y_offset, bevel_x_rotation, z_rotation) {
