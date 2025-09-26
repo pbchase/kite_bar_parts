@@ -2,6 +2,31 @@
 
 These designs have all been superceded by more functional shapes or have been otherwise retired.
 
+## chickenloop_release
+
+I've resisted the use of chickenloops for quite sometime, but every snap shackle I have tried presents issues in reliable use for newbies, or inadvertent release for experienced fliers. It's hard to beat the simplicity of a chickenloop with a push-away release. [chickenloop_release](chickenloop_release.scad), is the model for that release. The release doubles as a below-the-bar handle for the kite. As an Arc flier this is valuable feature for handling the kite while it's parked at zenith. The release is designed to accommodate a doubled trimline of 4mm Amsteel Blue through the center bore. A 0.102" stainless steel pin crosses and divides the center bore to provide a retainer for the trimline. The prototypes for this model use a 40mm stainless steel cotter pin to retain the free end of the chickenloop. The side bores retain a segment of 1/8" bungie that pushes the chickenloop and cotter pin together. A 90-facet-count [STL file](printable/chickenloop_release_d1928a2.stl) is available.
+
+![](images/chickenloop_release.png)
+
+[stopper\_ball](stopper_ball.scad) - The ball used in a moveable stopper on a kite bar trim line. STL files have been generated for
+[4mm\_amsteel\_blue\_trimline](printable/stopper_ball_4mm_amsteel.stl) and
+[5mm\_amsteel\_blue\_trimline](printable/stopper_ball_modern_5mm_amsteel.stl). The previous iteration of this ball was field tested and worked very well. This iteration removes a twist in the bungie path. To print it reliably, use a support structure that surrounds the base.
+
+![](images/stopper_ball.png)
+
+
+[stopper\_block\_v4](stopper_block_v4.scad) - This block is used in tandem with the stopper ball to form a moveable stopper. A slightly earlier version of this design has been field tested. This version should be easier to print than the previous version. STL files have been generated for
+[4mm\_amsteel\_blue\_trimline](printable/stopper_block_v4_4mm_amsteel.stl) and
+[5mm\_amsteel\_blue\_trimline](printable/stopper_block_v4_modern_5mm_amsteel.stl).
+
+![](images/stopper_block_v4.png)
+
+
+[separation\_block_v1](separation_block_v1.scad) - This component transfers load from the main flying lines by providing a pair of parallel bore holes. Each flying line passes through a bore hole. The flying line is trapped on the lower side of the block via a larks head of relatively fat line. The pair of bore holes surround a larger, central bore hole. The central bore hole allows a heavier line to be secured to the separation block. The upper end is secured via an overhand knot. The lower end of the central line entraps a low friction ring that acts as a pulley for the trim line. An [STL File](printable/separation_block_v1_9a972b6.stl) is available.
+
+![](images/separation_block_v1.png)
+
+
 **Three part wichard snaphook** -  This design is uses six components to form a fid and a handle to actuate a wichard snaphook. The components are
 [wichard\_snaphook\_handle\_concave\_link](wichard_snaphook_handle_concave_link.scad),
 [wichard\_snaphook\_cone\_fid](wichard_snaphook_cone_fid.scad) and
