@@ -4,6 +4,8 @@
 // Author: Philip B Chase, <philipbchase@gmail.com>
 /* This design is meant to mate on to the pilot-end of Clamcleat® CL826-11. It fits tightly onto the end with a positive rotational lock. The spherical shape conforms to the circular hole in the kite-side of the bar and allows for easy bar spinning.  The rotational lock allows for a flag-line guide path to be routed away from the jaws of the cleat to reduce the risk of cleating the flag line.
 */
+// Version: 3.0.0
+// File: cleat_bead.scad
 /* License: To the extent possible under law, Philip B Chase has waived all copyright and related or neighboring rights to 3D model for a cleat bead for a kite-bar control system. This work is published from: United States.  See: http://creativecommons.org/publicdomain/zero/1.0/
 
     Scans of the Clamcleat CL826-11AN are copyright Clamcleats Limited, UK
@@ -45,11 +47,16 @@ flag_line_guide_radius=flag_line_width/2 + 2;
 // Define dimension of the flag line guide path
 flag_line_path_straight_segment_length = -bead_center_to_back_face;
 
+// Define Set screw dimensions
+set_screw_radius = 2;
+set_screw_length = 12;
+set_screw_height_above_base = 7;
+
 // define cross sectional view parameters
 cross_section_edge = 100;
 
 // Rotate the kite side down for easier printing
-rotate([90,0,0])
+    rotate([90,0,145])
     difference() {
         cleat_bead_without_flag_line_path();
         flag_line_path(flag_line_width, flag_line_path_radius,flag_line_path_straight_segment_length);
@@ -71,6 +78,7 @@ module cleat_bead_without_flag_line_path() {
        }
        cleat_end();
        trimline_bore(trimline_bore_length, trimline_bore_r);
+       set_screw(set_screw_radius, set_screw_length);
     }
 }
 
@@ -139,6 +147,11 @@ module trimline_bore(trimline_bore_length, trimline_bore_r) {
         cylinder(h=trimline_bore_length,r=trimline_bore_r,center=true);
 }
 
+module set_screw(set_screw_radius, set_screw_length) {
+    translate([0, set_screw_height_above_base - ball_r, 10])
+            cylinder(h=set_screw_length,r=set_screw_radius,center=true);
+}
+
 module cleat_end_slice(bead_center_to_back_face) {
     slice_thickness = 1;
     slice_edge_radius = 1;
@@ -147,7 +160,7 @@ module cleat_end_slice(bead_center_to_back_face) {
             cleat_end();
             translate([0,bead_center_to_back_face + slice_edge_radius + slice_thickness/2,0]) cube([20,slice_thickness,20], center=true);
         }
-        sphere(r=slice_edge_radius, center=true);
+        sphere(r=slice_edge_radius);
     }
 }
 
@@ -175,7 +188,7 @@ module quarter_torus(width, path_r) {
     difference() {
         rotate_extrude()
         translate([path_r, 0, 0])
-        circle(r = width/2, $fn = 30);
+        circle(r = width/2, $fn = 15);
         union() { // remove 3/4 of the torus
             translate([path_r,path_r,0]) cube(2*path_r,center=true);
             translate([-path_r,-path_r,0]) cube(2*path_r,center=true);
