@@ -1,7 +1,20 @@
-# Change Log
-All notable changes to the Kite Bar Parts project will be documented in this file.
-This project adheres to [Semantic Versioning](http://semver.org/).
+# kite_bar_parts 1.6.0 (released 2025-09-27)
+- Document latest cleat bead (@pbchase)
+Use two images of the cleat bead.
+Describe the addition and installation of the set screw.
+Update the STL.
 
+- Update cleat_bead.scad (@pbchase)
+Add set_screw_plateau().
+Add a bore hole for the set screw.
+
+- Update README.md (@pbchase)
+Replace separation_block_v2 with separation_block_v3
+Move multiple old models to v3
+
+- Add separation_block_v3 (@pbchase)
+Provides an 8mm trimline bore for a brummel-spliced 4mm Amsteel Blue line.
+Adds label text.
 
 ## [1.5.0] - 2020-09-07
 ### Added
