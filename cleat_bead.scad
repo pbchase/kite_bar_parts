@@ -4,7 +4,7 @@
 // Author: Philip B Chase, <philipbchase@gmail.com>
 /* This design is meant to mate on to the pilot-end of Clamcleat® CL826-11. It fits tightly onto the end with a positive rotational lock. The spherical shape conforms to the circular hole in the kite-side of the bar and allows for easy bar spinning.  The rotational lock allows for a flag-line guide path to be routed away from the jaws of the cleat to reduce the risk of cleating the flag line.
 */
-// Version: 3.0.0
+// Version: 1.1.0
 // File: cleat_bead.scad
 /* License: To the extent possible under law, Philip B Chase has waived all copyright and related or neighboring rights to 3D model for a cleat bead for a kite-bar control system. This work is published from: United States.  See: http://creativecommons.org/publicdomain/zero/1.0/
 
@@ -13,6 +13,7 @@
 
 use <elliptical_torus.scad>;
 use <fillet_around_cylinder_base.scad>;
+use <rounded_cylinder.scad>;
 $fn=40;
 
 // Define major dimension of ball
@@ -55,6 +56,12 @@ set_screw_height_above_base = 7;
 // define cross sectional view parameters
 cross_section_edge = 100;
 
+module set_screw_plateau(plateau_radius, set_screw_length) {
+    translate([0, set_screw_height_above_base - ball_r, 10])
+        rounded_cylinder_2(set_screw_length, plateau_radius, plateau_radius/3);
+}
+
+
 // Rotate the kite side down for easier printing
     rotate([90,0,145])
     difference() {
@@ -75,6 +82,7 @@ module cleat_bead_without_flag_line_path() {
                 bead_center_to_back_face);
             cleat_end_slice(bead_center_to_back_face);
             expand_back_face(edge_radius, bead_center_to_back_face);
+            set_screw_plateau(set_screw_radius*2 , 8);
        }
        cleat_end();
        trimline_bore(trimline_bore_length, trimline_bore_r);
