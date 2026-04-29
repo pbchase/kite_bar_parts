@@ -82,7 +82,7 @@ module cleat_bead_without_flag_line_path() {
                 bead_center_to_back_face);
             cleat_end_slice(bead_center_to_back_face);
             expand_back_face(edge_radius, bead_center_to_back_face);
-            set_screw_plateau(set_screw_radius*2 , 8);
+            set_screw_plateau(set_screw_radius*3 , 8);
        }
        cleat_end();
        trimline_bore(trimline_bore_length, trimline_bore_r);
