@@ -1,3 +1,9 @@
+# kite_bar_parts 1.7.0 (released 2026-04-28)
+- Update cleat_bead.scad (@pbchase)
+    - Increase set screw plateau radius to set_screw_radius*3.
+    - Update STL to the new model.
+    - Update README.md
+
 # kite_bar_parts 1.6.0 (released 2025-09-27)
 - Document latest cleat bead (@pbchase)
 Use two images of the cleat bead.
