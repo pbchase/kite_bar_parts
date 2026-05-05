@@ -1,3 +1,6 @@
+# kite_bar_parts 1.7.1 (released 2026-05-05)
+- Remove text from the separation_block (@pbchase)
+
 # kite_bar_parts 1.7.0 (released 2026-04-28)
 - Update cleat_bead.scad (@pbchase)
     - Increase set screw plateau radius to set_screw_radius*3.
