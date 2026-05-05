@@ -58,20 +58,11 @@ difference() {
     trim_line_bore(trim_line_bore_major_radius, trim_line_bore_minor_radius, trim_line_bore_translation);
     flying_line_bore(main_line_bore_radius, main_line_bore_length, main_line_bore_x_offset);
     flying_line_bore(main_line_bore_radius, main_line_bore_length, -main_line_bore_x_offset);
-    label("pbchase separation block v3", 3);
+
 
     // uncomment these lines to see a cut-away of the interior bores
     // translate([-overall_height,-overall_height,0])
        // cube([overall_height,overall_height,overall_height]);
-}
-
-module label(label_text, height) {
-    translate([overall_width/2 -3, -1, overall_height/2 - r_body])
-    rotate([0,90,0]) {
-        linear_extrude(height = height) {
-            text(label_text, size = 1.35, font = "Liberation Sans");
-        }
-    }
 }
 
 module trim_line_bore(major_radius, minor_radius, z_translation) {
